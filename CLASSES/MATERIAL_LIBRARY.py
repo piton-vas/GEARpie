@@ -87,7 +87,27 @@ class LIBRARY_MAT:
             SFL = 30 - 0.22*temp + (4600 - 900*temp**(0.3))*cycles**(-1/3)
             return SFL
         self.SigmaFlim = SFlimPA66
-        
+
+    def D16T(self):
+        # Алюминиевый сплав Д16Т (ГОСТ 4784-2019), закалка + естественное старение
+        self.E = 72e3
+        self.v = 0.33
+        self.cp = 922
+        self.k = 130
+        self.rho = 2770
+        self.SigmaHlim = 170
+        self.SigmaFlim = 130
+
+    def PA_CF(self):
+        # PA12-CF FFF Печать (DIN EN ISO 1043-1), без ТО
+        self.E = 3500
+        self.v = 0.4
+        self.cp = 1500
+        self.k = 0.3
+        self.rho = 1100
+        self.SigmaHlim = 27
+        self.SigmaFlim = 12
+
 class MATERIAL:
     """Assign a material to pinion and wheel"""
 
