@@ -21,6 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. '''
 
 
+from CLASSES.I18N import t
+
+
 class GRAPHICS:
     """Creation of graphic output"""
 
@@ -34,10 +37,10 @@ class GRAPHICS:
         plt.show()
 
         plt.figure()
-        plt.plot(GPATH.xf, GFS.gs1, 'b', label='pinion')
-        plt.plot(GPATH.xf, GFS.gs2, 'r', label='wheel')
+        plt.plot(GPATH.xf, GFS.gs1, 'b', label=t('plot_lbl_pinion'))
+        plt.plot(GPATH.xf, GFS.gs2, 'r', label=t('plot_lbl_wheel'))
         plt.ylabel(r'$v_g\left(x\right)$ / ms$^{-1}$')
-        plt.title('Specific Sliding')
+        plt.title(t('plot_specific_sliding'))
         plt.xlabel('\u03B6')
         plt.grid(True)
         plt.legend()
@@ -47,30 +50,30 @@ class GRAPHICS:
         plt.plot(GPATH.xf, GFS.fnx[:, 0], 'k')
         plt.ylabel(r'$Fn\left(x\right)$ / Nmm$^{-1}$')
         plt.xlabel('\u03B6')
-        plt.title('Load per face width')
+        plt.title(t('plot_load_face_width'))
         plt.grid(True)
         plt.show()
-        
+
         plt.figure()
         plt.plot(GPATH.xf, GCONTACT.fnx_COF, 'k')
         plt.ylabel(r'$Fn\left(x\right)$ / Nmm$^{-1}$')
         plt.xlabel('\u03B6')
-        plt.title('Load per face width with friction')
+        plt.title(t('plot_load_face_width_friction'))
         plt.grid(True)
         plt.show()
 
         plt.figure()
         plt.plot(GPATH.xf, GFS.vg, 'k')
         plt.ylabel(r'$v_g\left(x\right)$ / ms$^{-1}$')
-        plt.title('Sliding Speed')
+        plt.title(t('plot_sliding_speed'))
         plt.xlabel('\u03B6')
         plt.grid(True)
         plt.show()
-        
+
         plt.figure()
         plt.plot(GPATH.xf, GCONTACT.p0[:,0], 'k')
         plt.ylabel(r'$\sigma_H\left(\xi\right)$ / MPa')
-        plt.title('Contact pressure')
+        plt.title(t('plot_contact_pressure'))
         plt.xlabel('\u03B6')
         plt.grid(True)
         plt.show()
@@ -78,7 +81,7 @@ class GRAPHICS:
         plt.figure()
         plt.plot(GPATH.xf, GCONTACT.qvzp1[:,0], 'k')
         plt.ylabel(r'$q_f\left(\xi\right)$ / W mm$^-2$')
-        plt.title('Instantaneous heat flux')
+        plt.title(t('plot_heat_flux_inst'))
         plt.xlabel('\u03B6')
         plt.grid(True)
         plt.show()
@@ -87,7 +90,7 @@ class GRAPHICS:
         plt.plot(GPATH.xf, GCONTACT.qvzp1m[:,0], 'k')
         plt.plot(GPATH.xf, GCONTACT.qvzp1ms[:,0], 'r')
         plt.ylabel(r'$\overline{q}_f\left(\xi\right)$ / W mm$^-2$')
-        plt.title('Average heat flux')
+        plt.title(t('plot_heat_flux_avg'))
         plt.xlabel('\u03B6')
         plt.grid(True)
         plt.show()

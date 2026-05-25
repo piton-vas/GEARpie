@@ -1,5 +1,7 @@
 # GEARpie
 
+*[Русская версия / Russian version](README.ru.md)*
+
 ## Requirements
 
 GEARpie requires Python 3 with the following libraries:

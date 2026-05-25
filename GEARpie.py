@@ -26,9 +26,14 @@ sys.dont_write_bytecode = True
 
 # IMPORT LIBRARIES ============================================================
 from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, LUBRICANT_LIBRARY,
-                     LOAD_STAGES, CALC_GEOMETRY, LOAD_SHARING, 
-                     FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, DIN3990, 
-                     VDI2736, MESH_GENERATOR, OUTPUT_PRINT, PLOTTING)
+                     LOAD_STAGES, CALC_GEOMETRY, LOAD_SHARING,
+                     FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, DIN3990,
+                     VDI2736, MESH_GENERATOR, OUTPUT_PRINT, PLOTTING, I18N)
+from CLASSES.I18N import t
+
+# LANGUAGE SELECTION ==========================================================
+_lang = input(I18N.t('prompt_lang')).strip().lower() or 'en'
+I18N.set_lang(_lang)
 
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
@@ -38,53 +43,50 @@ print('.'*65)
 print('{:^65s}'.format('MIT License, Carlos M.C.G. Fernandes, 2022'))
 print('='*65)
 print('\n')
-print('Gear geometries available:')
+print(t('cli_geom_list'))
 print('C14, S30, H501, H701, H951')
-print('To use a new geometry, type NEW')
-GEAR_TYPE = str(input('Input gear geometry: ')).upper()
+print(t('cli_geom_new'))
+GEAR_TYPE = str(input(t('prompt_gear_type'))).upper()
 # GEAR SELECTION ==============================================================
 GTYPE = GEAR_LIBRARY.GEAR(GEAR_TYPE)
 # GEAR MATERIALS ==============================================================
 # pinion and wheel material
-print('Materials available:')
+print(t('cli_mat_list'))
 print('STEEL, ADI, POM, PA66')
-MAT_PINION = str(input('Pinion material (default: STEEL): ')
-                 or 'STEEL').upper()
-MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL').upper()
+MAT_PINION = str(input(t('prompt_pinion_mat')) or 'STEEL').upper()
+MAT_WHEEL = str(input(t('prompt_wheel_mat')) or 'STEEL').upper()
 # LUBRICANT ===================================================================
 # lubricant
-B_STR = 'Base Oil (M - mineral, P - PAO, E - ester, G - polyglicol, D - dry): '
-BASE_NAME = str(input(B_STR)).upper()
+BASE_NAME = str(input(t('prompt_base_oil'))).upper()
 if BASE_NAME == 'D':
     GLUB = None
-    T0 = float(input('Ambient temperature / \u00b0C: '))
+    T0 = float(input(t('prompt_ambient_temp')))
 else:
-    LUB_NAME = str(input('ISO VG grade (32 to 680): ')).upper()
-    Tlub = float(input('Lubricant temperature / \u00b0C: '))
+    LUB_NAME = str(input(t('prompt_iso_vg'))).upper()
+    Tlub = float(input(t('prompt_lub_temp')))
     GLUB = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, Tlub)
 # select element where is applied speed and torque (P - pinion, W - wheel)
-PW_STR = 'Select (P - Pinion, W - Wheel or F - FZG) to apply torque and speed: '
-element = str(input(PW_STR)).upper()
+element = str(input(t('prompt_pw_select'))).upper()
 if element == 'F':
     STAGE = LOAD_STAGES.FZG()
     torque = STAGE.torque
-    speed = float(input('FZG motor speed / rpm: '))
+    speed = float(input(t('prompt_fzg_speed')))
 else:
     # torque Nm
-    torque = float(input('Torque / Nm: '))
+    torque = float(input(t('prompt_torque')))
     # speed rpm
-    speed = float(input('Speed / rpm: '))
+    speed = float(input(t('prompt_speed')))
 # discretization of path of contact
 size = 1000
 # discretization of involute geometry
 DISCRETIZATION = 1000
 # LOAD-SHARING MODEL?
-ANSWER_LS = str(input('Consider Load-Sharing (Y/N): ')).upper()
+ANSWER_LS = str(input(t('prompt_load_sharing'))).upper()
 # stress field position
-POST = str(input('Stress field position along AE (A, B, C, D or E): ')).upper()
+POST = str(input(t('prompt_stress_pos'))).upper()
 POSAE = 'A' + POST
 # graphics
-ANSWER_GRAPHICS = str(input('Graphical output (Y/N): ')).upper()
+ANSWER_GRAPHICS = str(input(t('prompt_graphics'))).upper()
 
 if ANSWER_GRAPHICS == 'Y':
     GRAPHICS = True
@@ -92,19 +94,17 @@ else:
     GRAPHICS = False
 
 # element order
-ANSWER_MESH = str(input('FEM mesh generation (Y/N): ')).upper()
+ANSWER_MESH = str(input(t('prompt_mesh'))).upper()
 
 if ANSWER_MESH == 'Y':
     MESH = True
-    DIM_MESH = int(input('Mesh dimension (2/3): '))
+    DIM_MESH = int(input(t('prompt_mesh_dim')))
     DIM = str(DIM_MESH)+'D'
-    ORDER = int(input('Element order (1/2): '))
-    PTOOTH = int(input('Number of tooth for pinion mesh: '))
-    NODEP = int(
-        input('Nº of nodes on pinion meshing surface: '))
-    WTOOTH = int(input('Number of tooth for wheel mesh: '))
-    NODEW = int(
-        input('Nº of nodes on wheel meshing surface: '))
+    ORDER = int(input(t('prompt_elem_order')))
+    PTOOTH = int(input(t('prompt_pinion_teeth')))
+    NODEP = int(input(t('prompt_pinion_nodes')))
+    WTOOTH = int(input(t('prompt_wheel_teeth')))
+    NODEW = int(input(t('prompt_wheel_nodes')))
 else:
     MESH = False
 
@@ -142,4 +142,4 @@ OUTPUT_PRINT.PRINTING(GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC)
 if GRAPHICS:
     PLOTTING.GRAPHICS(GPATH, GFS, GCONTACT)
 # CLOSE PROGRAM ===============================================================
-input("Press enter to exit")
+input(t('prompt_exit'))
