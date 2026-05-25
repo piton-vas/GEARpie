@@ -95,8 +95,9 @@ class LIBRARY_MAT:
         self.cp = 922
         self.k = 130
         self.rho = 2770
-        self.SigmaHlim = 170
-        self.SigmaFlim = 130
+        # S-N кривая отсутствует — отдаём константу для совместимости с VDI2736.LCC
+        self.SigmaHlim = lambda temp, cycles: 170
+        self.SigmaFlim = lambda temp, cycles: 130
 
     def PA_CF(self):
         # PA12-CF FFF Печать (DIN EN ISO 1043-1), без ТО
@@ -105,8 +106,22 @@ class LIBRARY_MAT:
         self.cp = 1500
         self.k = 0.3
         self.rho = 1100
-        self.SigmaHlim = 27
-        self.SigmaFlim = 12
+        # S-N кривая отсутствует — отдаём константу для совместимости с VDI2736.LCC
+        self.SigmaHlim = lambda temp, cycles: 27
+        self.SigmaFlim = lambda temp, cycles: 12
+
+    def PA6_CF(self):
+        # PA6-CF FFF печать (полиамид-6 с рубленым углеволокном ~20%), без отжига
+        # Источники: TDS Polymaker PA6-CF, Bambu Lab PA6-CF, eSUN ePA-CF
+        # E (XY) ~ 6-7 ГПа; прочность при растяжении ~100-120 МПа; изгибная ~150 МПа
+        self.E = 6500
+        self.v = 0.4
+        self.cp = 1600
+        self.k = 0.4
+        self.rho = 1180
+        # S-N кривая отсутствует — отдаём константу для совместимости с VDI2736.LCC
+        self.SigmaHlim = lambda temp, cycles: 35
+        self.SigmaFlim = lambda temp, cycles: 18
 
 class MATERIAL:
     """Assign a material to pinion and wheel"""

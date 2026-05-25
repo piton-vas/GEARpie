@@ -106,8 +106,8 @@ class HERTZ:
             GEO.rb1+(GEO.T1A+GPATH.xf*GEO.epslon_alpha)*self.CoF*self.signVG)
         # numerical gear loss factor according to Wimmer
         self.INTEGRAND = GFS.fnx*self.vg3D/(GFS.fbt*GFS.vtb)
-        self.HVL = np.trapz(
-            np.trapz(self.INTEGRAND, GPATH.bpos), GPATH.xd)/GEO.pbt
+        self.HVL = np.trapezoid(
+            np.trapezoid(self.INTEGRAND, GPATH.bpos), GPATH.xd)/GEO.pbt
         # average power loss
         self.Pvzp = GFS.Pin*self.HVL*self.CoF
         # local power loss

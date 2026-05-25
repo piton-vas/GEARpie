@@ -130,7 +130,7 @@ class LINES:
             kPfI = np.cos(alphaC)**2/(E*b)*\
                 (L*(uf/sf)**2+M*(uf/sf)+P*(1+Q*(np.tan(alphaC))**2))
             kPtI = kPbI + kPsI + kPcI 
-            return np.trapz(kPtI,y) + kPfI
+            return np.trapezoid(kPtI,y) + kPfI
 
         ## INITIAL
         self.s1 = np.pi*GEO.m/2 + 2*GEO.x1*GEO.m*np.tan(GEO.alpha)

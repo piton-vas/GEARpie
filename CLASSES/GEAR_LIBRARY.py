@@ -21,6 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. '''
 
 
+from CLASSES import I18N
+
+
 class GEAR:
     """Library with gear geometries and input prompt for new gear geometries"""
 
@@ -30,32 +33,30 @@ class GEAR:
         getattr(self, GEAR_TYPE, lambda: default)()
 
     def NEW(self):
-        self.GEAR_NAME = input('Gear name: ').upper()
-        self.alpha = float(
-            input('Pressure angle (default: 20) / \u00b0: ') or '20')
-        self.beta = float(input('Helix angle / \u00b0: '))
-        self.m = float(input('Gear module / mm: '))
-        self.z = [float(input('z1: ')), float(input('z2: '))]
-        self.x = [float(input('Pinion profile shift x1: ')),
-                  float(input('Wheel profile shift x2: '))]
-        self.addendum_reduction = str(input('Calculate addendum reduction factor (Y/N): ')).upper()
-        self.b = [float(input('Pinion facewith b1: ')),
-                  float(input('Wheel facewith b2: '))]
-        self.dshaft = [float(input('Pinion shaft ds1: ')),
-                       float(input('Wheel shaft ds2: '))]
+        t = I18N.t
+        self.GEAR_NAME = input(t('prompt_gear_name')).upper()
+        self.alpha = float(input(t('prompt_alpha')) or '20')
+        self.beta = float(input(t('prompt_beta')))
+        self.m = float(input(t('prompt_module')))
+        self.z = [float(input(t('prompt_z1'))), float(input(t('prompt_z2')))]
+        self.x = [float(input(t('prompt_x1'))),
+                  float(input(t('prompt_x2')))]
+        self.addendum_reduction = str(input(t('prompt_addendum_reduction'))).upper()
+        self.b = [float(input(t('prompt_b1'))),
+                  float(input(t('prompt_b2')))]
+        self.dshaft = [float(input(t('prompt_ds1'))),
+                       float(input(t('prompt_ds2')))]
         self.al = None
-        self.haP = float(input('Addendum coefficient (default: 1): ') or '1')
-        self.hfP = float(
-            input('Deddendum coefficient (default: 1.25): ') or '1.25')
-        self.rfP = float(
-            input('Root radius coefficient (default: 0.38): ') or '0.38')
-        print('Gear surface finishing:')
-        self.Ra = [float(input('Ra1 (default: 0.6) / \u03BCm: ') or '0.6'),
-                   float(input('Ra2 (default: 0.6) / \u03BCm: ') or '0.6')]
-        self.Rq = [float(input('Rq1 (default: 0.7) / \u03BCm: ') or '0.7'),
-                   float(input('Rq2 (default: 0.7) / \u03BCm: ') or '0.7')]
-        self.Rz = [float(input('Rz1 (default: 4.8) / \u03BCm: ') or '4.8'),
-                   float(input('Rz2 (default: 4.8) / \u03BCm: ') or '4.8')]
+        self.haP = float(input(t('prompt_haP')) or '1')
+        self.hfP = float(input(t('prompt_hfP')) or '1.25')
+        self.rfP = float(input(t('prompt_rfP')) or '0.38')
+        print(t('cli_surface_finishing'))
+        self.Ra = [float(input(t('prompt_ra1')) or '0.6'),
+                   float(input(t('prompt_ra2')) or '0.6')]
+        self.Rq = [float(input(t('prompt_rq1')) or '0.7'),
+                   float(input(t('prompt_rq2')) or '0.7')]
+        self.Rz = [float(input(t('prompt_rz1')) or '4.8'),
+                   float(input(t('prompt_rz2')) or '4.8')]
 
     def C14(self):
         self.GEAR_NAME = 'C14'

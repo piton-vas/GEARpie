@@ -24,11 +24,24 @@ SOFTWARE. '''
 class LUBRICANT:
     """Library with ISO VG grade lubricants"""
 
+    VALID_BASES = ('M', 'P', 'E', 'G')
+    VALID_GRADES = ('32', '46', '68', '100', '150', '220',
+                    '320', '460', '680')
+
     def __init__(self, BASE_NAME, LUB_GRADE, Tlub):
         import numpy as np
-        default = 'No defined lubricant'
-        getattr(self, BASE_NAME, lambda: default)()
-        getattr(self, BASE_NAME+LUB_GRADE, lambda: default)()
+        if BASE_NAME not in self.VALID_BASES:
+            raise ValueError(
+                f"Unknown lubricant base '{BASE_NAME}'. "
+                f"Valid options: {', '.join(self.VALID_BASES)} "
+                f"(M=mineral, P=PAO, E=ester, G=polyglycol).")
+        if LUB_GRADE not in self.VALID_GRADES and not (
+                BASE_NAME == 'P' and LUB_GRADE == 'RP'):
+            raise ValueError(
+                f"Unknown ISO VG grade '{LUB_GRADE}'. "
+                f"Valid grades: {', '.join(self.VALID_GRADES)}.")
+        getattr(self, BASE_NAME)()
+        getattr(self, BASE_NAME+LUB_GRADE)()
         # lubricant temperature
         self.TL = Tlub
         self.NAME = BASE_NAME+LUB_GRADE
