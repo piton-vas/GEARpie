@@ -1,0 +1,225 @@
+
+======================================================================
+  i32_8x4_m1.25-Z18-54-126_m1.5-Z22-22-66_b20x32 [N6_32_COMP]
+======================================================================
+  → REPORT\SPIDER_KNEE\i32_8x4_m1.25-Z18-54-126_m1.5-Z22-22-66_b20x32.txt
+  i = 32, T_out ≈ 95.9 Н·м, n_out = 4.69 об/мин
+  Ст.1 sun-planet: SF=2.32/2.61, SH=1.18/1.18
+  Ст.1 planet-ring: SF_p=1.75, SF_r=2.21
+  Ст.2 sun-planet: SF=1.23/1.23, SH=0.76/0.76
+  Ст.2 planet-ring: SF_p=0.76, SF_r=1.09
+
+======================================================================
+  i32_8x4_m1.25-Z18-54-126_m1.5-Z22-22-66_b25x40 [N6_32_MID]
+======================================================================
+  → REPORT\SPIDER_KNEE\i32_8x4_m1.25-Z18-54-126_m1.5-Z22-22-66_b25x40.txt
+  i = 32, T_out ≈ 95.9 Н·м, n_out = 4.69 об/мин
+  Ст.1 sun-planet: SF=2.91/3.26, SH=1.32/1.32
+  Ст.1 planet-ring: SF_p=2.18, SF_r=2.76
+  Ст.2 sun-planet: SF=1.53/1.53, SH=0.85/0.85
+  Ст.2 planet-ring: SF_p=0.95, SF_r=1.37
+
+======================================================================
+  i35_7x5_m1.25-Z18-45-108_m1.5-Z20-30-80_b20x32 [N6_35_COMP]
+======================================================================
+  → REPORT\SPIDER_KNEE\i35_7x5_m1.25-Z18-45-108_m1.5-Z20-30-80_b20x32.txt
+  i = 35, T_out ≈ 104.9 Н·м, n_out = 4.29 об/мин
+  Ст.1 sun-planet: SF=2.31/2.57, SH=1.15/1.15
+  Ст.1 planet-ring: SF_p=1.70, SF_r=2.19
+  Ст.2 sun-planet: SF=1.26/1.34, SH=0.81/0.81
+  Ст.2 planet-ring: SF_p=0.85, SF_r=1.16
+
+======================================================================
+  i35_7x5_m1.25-Z18-45-108_m1.5-Z20-30-80_b25x40 [N6_35_MID]
+======================================================================
+  → REPORT\SPIDER_KNEE\i35_7x5_m1.25-Z18-45-108_m1.5-Z20-30-80_b25x40.txt
+  i = 35, T_out ≈ 104.9 Н·м, n_out = 4.29 об/мин
+  Ст.1 sun-planet: SF=2.89/3.22, SH=1.28/1.28
+  Ст.1 planet-ring: SF_p=2.12, SF_r=2.74
+  Ст.2 sun-planet: SF=1.58/1.67, SH=0.91/0.91
+  Ст.2 planet-ring: SF_p=1.06, SF_r=1.45
+
+======================================================================
+  i36_6x6_m1.5-Z18-36-90_m1.5-Z18-36-90_b22x33 [N6_36_LARGE]
+======================================================================
+  → REPORT\SPIDER_KNEE\i36_6x6_m1.5-Z18-36-90_m1.5-Z18-36-90_b22x33.txt
+  i = 36, T_out ≈ 107.9 Н·м, n_out = 4.17 об/мин
+  Ст.1 sun-planet: SF=3.63/3.99, SH=1.39/1.39
+  Ст.1 planet-ring: SF_p=2.58, SF_r=3.43
+  Ст.2 sun-planet: SF=1.34/1.48, SH=0.84/0.84
+  Ст.2 planet-ring: SF_p=0.96, SF_r=1.27
+
+======================================================================
+  i36_6x6_m1.5-Z18-36-90_m1.5-Z18-36-90_b30x45 [N6_36_WIDE]
+======================================================================
+  → REPORT\SPIDER_KNEE\i36_6x6_m1.5-Z18-36-90_m1.5-Z18-36-90_b30x45.txt
+  i = 36, T_out ≈ 107.9 Н·м, n_out = 4.17 об/мин
+  Ст.1 sun-planet: SF=4.95/5.44, SH=1.62/1.62
+  Ст.1 planet-ring: SF_p=3.52, SF_r=4.67
+  Ст.2 sun-planet: SF=1.83/2.01, SH=0.99/0.99
+  Ст.2 planet-ring: SF_p=1.30, SF_r=1.73
+
+======================================================================
+  i40_8x5_m1.25-Z18-54-126_m1.5-Z20-30-80 [N6_40_ULTRA]
+======================================================================
+  → REPORT\SPIDER_KNEE\i40_8x5_m1.25-Z18-54-126_m1.5-Z20-30-80.txt
+  i = 40, T_out ≈ 119.9 Н·м, n_out = 3.75 об/мин
+  Ст.1 sun-planet: SF=2.91/3.26, SH=1.32/1.32
+  Ст.1 planet-ring: SF_p=2.18, SF_r=2.76
+  Ст.2 sun-planet: SF=1.38/1.47, SH=0.85/0.85
+  Ст.2 planet-ring: SF_p=0.93, SF_r=1.27
+
+======================================================================
+  i42_7x6_m1.25-Z18-45-108_m1.5-Z18-36-90 [N6_42_ULTRA]
+======================================================================
+  → REPORT\SPIDER_KNEE\i42_7x6_m1.25-Z18-45-108_m1.5-Z18-36-90.txt
+  i = 42, T_out ≈ 125.9 Н·м, n_out = 3.57 об/мин
+  Ст.1 sun-planet: SF=2.89/3.22, SH=1.28/1.28
+  Ст.1 planet-ring: SF_p=2.12, SF_r=2.74
+  Ст.2 sun-planet: SF=1.40/1.53, SH=0.86/0.86
+  Ст.2 planet-ring: SF_p=0.99, SF_r=1.32
+
+→ Сравнительная сводка: REPORT\SPIDER_KNEE\COMPARE.txt
+Traceback (most recent call last):
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 689, in main
+    res = run_variant(v)
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 371, in run_variant
+    s2 = run_external_pair(
+        name='__s2_internal__',
+    ...<3 lines>...
+        x_pinion=v['x_s2'], x_wheel=v['x_p2'],
+    )
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 221, in run_external_pair
+    raise last_err
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 212, in run_external_pair
+    gtype, geo, gfs, gcontact, glcc = _run_pair_at(
+                                      ~~~~~~~~~~~~^
+        s, name, m, z_pinion, z_wheel, b,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        torque_pinion_nm, speed_pinion_rpm,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        mat_pinion, mat_wheel, x_pinion, x_wheel)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 194, in _run_pair_at
+    pprof = INVOLUTE_GEOMETRY.LITVIN('P', geo, size)
+  File "C:\Users\user\vs_code_projects\GEARpie\CLASSES\INVOLUTE_GEOMETRY.py", line 67, in __init__
+    self.phiB = optimize.brentq(angleI,-GEO.alpha,GEO.alpha)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\scipy\optimize\_zeros_py.py", line 846, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+ValueError: f(a) and f(b) must have different signs
+Traceback (most recent call last):
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 689, in main
+    res = run_variant(v)
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 371, in run_variant
+    s2 = run_external_pair(
+        name='__s2_internal__',
+    ...<3 lines>...
+        x_pinion=v['x_s2'], x_wheel=v['x_p2'],
+    )
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 221, in run_external_pair
+    raise last_err
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 212, in run_external_pair
+    gtype, geo, gfs, gcontact, glcc = _run_pair_at(
+                                      ~~~~~~~~~~~~^
+        s, name, m, z_pinion, z_wheel, b,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        torque_pinion_nm, speed_pinion_rpm,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        mat_pinion, mat_wheel, x_pinion, x_wheel)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 194, in _run_pair_at
+    pprof = INVOLUTE_GEOMETRY.LITVIN('P', geo, size)
+  File "C:\Users\user\vs_code_projects\GEARpie\CLASSES\INVOLUTE_GEOMETRY.py", line 67, in __init__
+    self.phiB = optimize.brentq(angleI,-GEO.alpha,GEO.alpha)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\scipy\optimize\_zeros_py.py", line 846, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+ValueError: f(a) and f(b) must have different signs
+Traceback (most recent call last):
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 689, in main
+    res = run_variant(v)
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 371, in run_variant
+    s2 = run_external_pair(
+        name='__s2_internal__',
+    ...<3 lines>...
+        x_pinion=v['x_s2'], x_wheel=v['x_p2'],
+    )
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 221, in run_external_pair
+    raise last_err
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 212, in run_external_pair
+    gtype, geo, gfs, gcontact, glcc = _run_pair_at(
+                                      ~~~~~~~~~~~~^
+        s, name, m, z_pinion, z_wheel, b,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        torque_pinion_nm, speed_pinion_rpm,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        mat_pinion, mat_wheel, x_pinion, x_wheel)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\vs_code_projects\GEARpie\spider_knee.py", line 194, in _run_pair_at
+    pprof = INVOLUTE_GEOMETRY.LITVIN('P', geo, size)
+  File "C:\Users\user\vs_code_projects\GEARpie\CLASSES\INVOLUTE_GEOMETRY.py", line 67, in __init__
+    self.phiB = optimize.brentq(angleI,-GEO.alpha,GEO.alpha)
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\scipy\optimize\_zeros_py.py", line 846, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+ValueError: f(a) and f(b) must have different signs
+
+======================================================================
+  i35_7x5_m1.25-Z18-45-108_m2-Z16-32-80 [N6_35_THICK]
+======================================================================
+!!! Ошибка в варианте i35_7x5_m1.25-Z18-45-108_m2-Z16-32-80: ValueError: f(a) and f(b) must have different signs
+
+======================================================================
+  i35_7x5_m1.5-Z20-50-120_m2-Z16-32-80 [N6_35_THICK_V2]
+======================================================================
+!!! Ошибка в варианте i35_7x5_m1.5-Z20-50-120_m2-Z16-32-80: ValueError: f(a) and f(b) must have different signs
+
+======================================================================
+  i36_6x6_m1.5-Z18-36-90_m2-Z18-36-90 [N6_36_ROBUST]
+======================================================================
+  → REPORT\SPIDER_KNEE\i36_6x6_m1.5-Z18-36-90_m2-Z18-36-90.txt
+  i = 36, T_out ≈ 107.9 Н·м, n_out = 4.17 об/мин
+  Ст.1 sun-planet: SF=4.62/5.08, SH=1.56/1.56
+  Ст.1 planet-ring: SF_p=3.28, SF_r=4.36
+  Ст.2 sun-planet: SF=5.07/5.57, SH=1.64/1.64
+  Ст.2 planet-ring: SF_p=3.60, SF_r=4.79
+
+======================================================================
+  i40_8x5_m1.25-Z18-54-126_m2-Z16-32-80 [N6_40_ROBUST]
+======================================================================
+!!! Ошибка в варианте i40_8x5_m1.25-Z18-54-126_m2-Z16-32-80: ValueError: f(a) and f(b) must have different signs
+
+→ Сравнительная сводка: REPORT\SPIDER_KNEE\COMPARE.txt
+
+======================================================================
+  i35_7x5_m1.25-Z18-45-108_m2-Z20-40-100 [N6_35_THICK]
+======================================================================
+  → REPORT\SPIDER_KNEE\i35_7x5_m1.25-Z18-45-108_m2-Z20-40-100.txt
+  i = 35, T_out ≈ 104.9 Н·м, n_out = 4.29 об/мин
+  Ст.1 sun-planet: SF=2.89/3.22, SH=1.28/1.28
+  Ст.1 planet-ring: SF_p=2.12, SF_r=2.74
+  Ст.2 sun-planet: SF=4.62/5.01, SH=1.63/1.63
+  Ст.2 planet-ring: SF_p=3.25, SF_r=4.26
+
+======================================================================
+  i40_8x5_m1.25-Z18-54-126_m2-Z20-40-100 [N6_40_ROBUST]
+======================================================================
+  → REPORT\SPIDER_KNEE\i40_8x5_m1.25-Z18-54-126_m2-Z20-40-100.txt
+  i = 40, T_out ≈ 119.9 Н·м, n_out = 3.75 об/мин
+  Ст.1 sun-planet: SF=3.25/3.65, SH=1.39/1.39
+  Ст.1 planet-ring: SF_p=2.44, SF_r=3.09
+  Ст.2 sun-planet: SF=4.04/4.38, SH=1.53/1.53
+  Ст.2 planet-ring: SF_p=2.85, SF_r=3.73
+
+======================================================================
+  i42_7x6_m1.25-Z18-45-108_m2-Z20-40-100 [N6_42_ROBUST]
+======================================================================
+  → REPORT\SPIDER_KNEE\i42_7x6_m1.25-Z18-45-108_m2-Z20-40-100.txt
+  i = 42, T_out ≈ 125.9 Н·м, n_out = 3.57 об/мин
+  Ст.1 sun-planet: SF=3.23/3.60, SH=1.36/1.36
+  Ст.1 planet-ring: SF_p=2.38, SF_r=3.06
+  Ст.2 sun-planet: SF=4.62/5.01, SH=1.63/1.63
+  Ст.2 planet-ring: SF_p=3.25, SF_r=4.26
+
+→ Сравнительная сводка: REPORT\SPIDER_KNEE\COMPARE.txt

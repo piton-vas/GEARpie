@@ -75,10 +75,22 @@ class HERTZ:
         # POWER LOSS ==========================================================
         if GLUB == None:
             # according to VDI 2736
+            polymers = ('POM', 'PA66', 'PA6_CF', 'PA_CF')
+            metals = ('STEEL', 'ADI', 'D16T')
             if GMAT.MAT1 == GMAT.MAT2 == 'POM':
                 self.CoF = 0.28
             elif GMAT.MAT1 == GMAT.MAT2 == 'PA66':
                 self.CoF = 0.40
+            elif GMAT.MAT1 == GMAT.MAT2 in ('PA6_CF', 'PA_CF'):
+                # PA-CF / PA-CF — пониженный сухой трением благодаря угле-волокну
+                self.CoF = 0.30
+            elif (GMAT.MAT1 in polymers) and (GMAT.MAT2 in polymers):
+                # смешанные пары полимеров (POM-PA, PA66-PA6_CF и т.п.)
+                self.CoF = 0.30
+            elif (GMAT.MAT1 in polymers and GMAT.MAT2 in metals) or \
+                 (GMAT.MAT2 in polymers and GMAT.MAT1 in metals):
+                # полимер по металлу — заметно ниже за счёт переноса плёнки
+                self.CoF = 0.20
             elif GMAT.MAT1 != GMAT.MAT2 and GMAT.MAT1 == ('POM' or 'PA66'):
                 self.CoF = 0.18
             elif GMAT.MAT1 != GMAT.MAT2 and\
@@ -86,6 +98,9 @@ class HERTZ:
                  self.CoF = 0.2
             elif GMAT.MAT1 == GMAT.MAT2 == 'STEEL':
                 self.CoF = 0.8
+            else:
+                # консервативный fallback, если материалы вне библиотеки
+                self.CoF = 0.30
         else:
             # coefficient of friction according to Schlenk
             self.CoF = (0.048 * ((GFS.fbn / (GEO.b*GPATH.lxi.min())) /

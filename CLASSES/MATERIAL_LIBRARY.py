@@ -123,6 +123,50 @@ class LIBRARY_MAT:
         self.SigmaHlim = lambda temp, cycles: 35
         self.SigmaFlim = lambda temp, cycles: 18
 
+    def PETG(self):
+        # PETG FFF печать. Литературные оценки (без углеволокна, типовая печать XY).
+        # σt ~ 45-55 МПа, σизг ~ 60-70 МПа; для шестерён это слабый материал.
+        # σHlim ≈ 22 МПа (≈ 0.6 от POM/PA6-CF — типично для аморфного PETG)
+        # σFlim ≈ 12 МПа (с учётом анизотропии печати)
+        # E_XY ~ 2.0 ГПа; ν ~ 0.4; ρ ~ 1270; cp ~ 1100; k ~ 0.2
+        self.E = 2000
+        self.v = 0.4
+        self.cp = 1100
+        self.k = 0.2
+        self.rho = 1270
+        self.SigmaHlim = lambda temp, cycles: 22
+        self.SigmaFlim = lambda temp, cycles: 12
+
+    def PA6_PRINT(self):
+        # PA6 печатный (FFF, без углеволокна).
+        # Источники: TDS eSUN ePA, Polymaker PolyMide CoPA, Bambu Lab PAHT.
+        # σt(XY) ~ 50-65 МПа, σизг ~ 70-90 МПа; E(XY) ~ 1.4-1.7 ГПа.
+        # σHlim для зубчатых ≈ 25 МПа (выше PETG за счёт пластичности),
+        # σFlim ≈ 16 МПа (выше PETG из-за лучшего удлинения при разрыве).
+        # ν ~ 0.4; ρ ~ 1130; cp ~ 1700; k ~ 0.25.
+        # Без отжига; с отжигом параметры на ~15-20% выше.
+        self.E = 1500
+        self.v = 0.4
+        self.cp = 1700
+        self.k = 0.25
+        self.rho = 1130
+        self.SigmaHlim = lambda temp, cycles: 25
+        self.SigmaFlim = lambda temp, cycles: 16
+
+    def POM_C(self):
+        # POM-C (полиоксиметилен, кополимер) фрезерованный.
+        # σt ~ 65-70 МПа, σизг ~ 85-95 МПа; E ~ 3.0-3.2 ГПа.
+        # σHlim ≈ 35 МПа, σFlim ≈ 26 МПа (близко к POM-H, чуть мягче).
+        # Используем как уточнённый POM-C; для совместимости с библиотекой
+        # параметры близки к функции POM().
+        self.E = 3000
+        self.v = 0.35
+        self.cp = 1465
+        self.k = 0.3
+        self.rho = 1410
+        self.SigmaHlim = lambda temp, cycles: 35
+        self.SigmaFlim = lambda temp, cycles: 26
+
 class MATERIAL:
     """Assign a material to pinion and wheel"""
 
