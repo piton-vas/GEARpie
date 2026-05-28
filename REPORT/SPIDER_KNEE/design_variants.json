@@ -1,0 +1,834 @@
+{
+  "timestamp": "2026-05-28T08:20:32.840052",
+  "requirements": {
+    "input_torque_nm": 3.7,
+    "input_speed_rpm": 150,
+    "output_torque_nm": 60,
+    "target_ratio": 30,
+    "max_diameter_mm": 200,
+    "max_width_mm": 40,
+    "material": "PETG (3D печать)"
+  },
+  "variants": [
+    {
+      "index": 1,
+      "i_total": 30.0,
+      "max_diameter_mm": 13.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 16.7,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 2.0,
+        "d_ring_mm": 10.0,
+        "d_satellite_mm": 4.0,
+        "d_carrier_mm": 6.0,
+        "d_housing_mm": 13.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 2,
+        "z_ring": 8,
+        "z_satellite": 3,
+        "n_satellites": 4,
+        "d_sun_mm": 2.0,
+        "d_ring_mm": 8.0,
+        "d_satellite_mm": 3.0,
+        "d_carrier_mm": 5.0,
+        "d_housing_mm": 11.0,
+        "width_mm": 32,
+        "ratio": 5.0
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.24,
+        "stage_2_stress_mpa": 0.59,
+        "stage_1_sf": 152.5,
+        "stage_2_sf": 62.26,
+        "min_sf": 62.26
+      },
+      "output_torque_nm": 111.0
+    },
+    {
+      "index": 2,
+      "i_total": 30.0,
+      "max_diameter_mm": 15.5,
+      "module_mm": 1.25,
+      "asymmetry_pct": 16.7,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 2.5,
+        "d_ring_mm": 12.5,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 7.5,
+        "d_housing_mm": 15.5,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 2,
+        "z_ring": 8,
+        "z_satellite": 3,
+        "n_satellites": 4,
+        "d_sun_mm": 2.5,
+        "d_ring_mm": 10.0,
+        "d_satellite_mm": 3.75,
+        "d_carrier_mm": 6.25,
+        "d_housing_mm": 13.0,
+        "width_mm": 32,
+        "ratio": 5.0
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.22,
+        "stage_2_stress_mpa": 0.53,
+        "stage_1_sf": 170.5,
+        "stage_2_sf": 69.6,
+        "min_sf": 69.6
+      },
+      "output_torque_nm": 111.0
+    },
+    {
+      "index": 3,
+      "i_total": 32.0,
+      "max_diameter_mm": 16.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 11.1,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 2.0,
+        "d_ring_mm": 10.0,
+        "d_satellite_mm": 4.0,
+        "d_carrier_mm": 6.0,
+        "d_housing_mm": 13.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 13.0,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 8.0,
+        "d_housing_mm": 16.0,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.24,
+        "stage_2_stress_mpa": 0.48,
+        "stage_1_sf": 152.5,
+        "stage_2_sf": 76.25,
+        "min_sf": 76.25
+      },
+      "output_torque_nm": 118.4
+    },
+    {
+      "index": 4,
+      "i_total": 30.0,
+      "max_diameter_mm": 18.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 16.7,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 15,
+        "z_satellite": 6,
+        "n_satellites": 3,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 15.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 9.0,
+        "d_housing_mm": 18.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 2,
+        "z_ring": 8,
+        "z_satellite": 3,
+        "n_satellites": 4,
+        "d_sun_mm": 2.0,
+        "d_ring_mm": 8.0,
+        "d_satellite_mm": 3.0,
+        "d_carrier_mm": 5.0,
+        "d_housing_mm": 11.0,
+        "width_mm": 32,
+        "ratio": 5.0
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.59,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 62.26,
+        "min_sf": 62.26
+      },
+      "output_torque_nm": 111.0
+    },
+    {
+      "index": 5,
+      "i_total": 30.0,
+      "max_diameter_mm": 18.0,
+      "module_mm": 1.5,
+      "asymmetry_pct": 16.7,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 15.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 9.0,
+        "d_housing_mm": 18.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 2,
+        "z_ring": 8,
+        "z_satellite": 3,
+        "n_satellites": 4,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 12.0,
+        "d_satellite_mm": 4.5,
+        "d_carrier_mm": 7.5,
+        "d_housing_mm": 15.0,
+        "width_mm": 32,
+        "ratio": 5.0
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.48,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 76.25,
+        "min_sf": 76.25
+      },
+      "output_torque_nm": 111.0
+    },
+    {
+      "index": 6,
+      "i_total": 32.0,
+      "max_diameter_mm": 18.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 11.1,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 15,
+        "z_satellite": 6,
+        "n_satellites": 3,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 15.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 9.0,
+        "d_housing_mm": 18.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 13.0,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 8.0,
+        "d_housing_mm": 16.0,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.48,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 76.25,
+        "min_sf": 76.25
+      },
+      "output_torque_nm": 118.4
+    },
+    {
+      "index": 7,
+      "i_total": 30.0,
+      "max_diameter_mm": 19.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 16.7,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 2.0,
+        "d_ring_mm": 10.0,
+        "d_satellite_mm": 4.0,
+        "d_carrier_mm": 6.0,
+        "d_housing_mm": 13.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 16,
+        "z_satellite": 6,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 16.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 10.0,
+        "d_housing_mm": 19.0,
+        "width_mm": 32,
+        "ratio": 5.0
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.24,
+        "stage_2_stress_mpa": 0.42,
+        "stage_1_sf": 152.5,
+        "stage_2_sf": 88.04,
+        "min_sf": 88.04
+      },
+      "output_torque_nm": 111.0
+    },
+    {
+      "index": 8,
+      "i_total": 30.0,
+      "max_diameter_mm": 19.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 16.7,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 15,
+        "z_satellite": 6,
+        "n_satellites": 3,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 15.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 9.0,
+        "d_housing_mm": 18.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 16,
+        "z_satellite": 6,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 16.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 10.0,
+        "d_housing_mm": 19.0,
+        "width_mm": 32,
+        "ratio": 5.0
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.42,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 88.04,
+        "min_sf": 88.04
+      },
+      "output_torque_nm": 111.0
+    },
+    {
+      "index": 9,
+      "i_total": 32.0,
+      "max_diameter_mm": 19.2,
+      "module_mm": 1.25,
+      "asymmetry_pct": 11.1,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 2.5,
+        "d_ring_mm": 12.5,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 7.5,
+        "d_housing_mm": 15.5,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 3.75,
+        "d_ring_mm": 16.25,
+        "d_satellite_mm": 6.25,
+        "d_carrier_mm": 10.0,
+        "d_housing_mm": 19.25,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.22,
+        "stage_2_stress_mpa": 0.43,
+        "stage_1_sf": 170.5,
+        "stage_2_sf": 85.25,
+        "min_sf": 85.25
+      },
+      "output_torque_nm": 118.4
+    },
+    {
+      "index": 10,
+      "i_total": 29.333,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 3.0,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 3,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 13.0,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 8.0,
+        "d_housing_mm": 16.0,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.39,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 93.38,
+        "min_sf": 93.38
+      },
+      "output_torque_nm": 108.53
+    },
+    {
+      "index": 11,
+      "i_total": 29.333,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 3.0,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 13.0,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 8.0,
+        "d_housing_mm": 16.0,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.39,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 93.38,
+        "min_sf": 93.38
+      },
+      "output_torque_nm": 108.53
+    },
+    {
+      "index": 12,
+      "i_total": 29.333,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 3.0,
+      "stage_1": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 3,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stage_2": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 13.0,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 8.0,
+        "d_housing_mm": 16.0,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.17,
+        "stage_2_stress_mpa": 0.46,
+        "stage_1_sf": 215.66,
+        "stage_2_sf": 79.64,
+        "min_sf": 79.64
+      },
+      "output_torque_nm": 108.53
+    },
+    {
+      "index": 13,
+      "i_total": 29.333,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 3.0,
+      "stage_1": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stage_2": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 13.0,
+        "d_satellite_mm": 5.0,
+        "d_carrier_mm": 8.0,
+        "d_housing_mm": 16.0,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.17,
+        "stage_2_stress_mpa": 0.46,
+        "stage_1_sf": 215.66,
+        "stage_2_sf": 79.64,
+        "min_sf": 79.64
+      },
+      "output_torque_nm": 108.53
+    },
+    {
+      "index": 14,
+      "i_total": 30.25,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 0.0,
+      "stage_1": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 3,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.17,
+        "stage_2_stress_mpa": 0.4,
+        "stage_1_sf": 215.66,
+        "stage_2_sf": 91.96,
+        "min_sf": 91.96
+      },
+      "output_torque_nm": 111.93
+    },
+    {
+      "index": 15,
+      "i_total": 30.25,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 0.0,
+      "stage_1": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.17,
+        "stage_2_stress_mpa": 0.4,
+        "stage_1_sf": 215.66,
+        "stage_2_sf": 91.96,
+        "min_sf": 91.96
+      },
+      "output_torque_nm": 111.93
+    },
+    {
+      "index": 16,
+      "i_total": 33.0,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 8.3,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 2.0,
+        "d_ring_mm": 10.0,
+        "d_satellite_mm": 4.0,
+        "d_carrier_mm": 6.0,
+        "d_housing_mm": 13.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.24,
+        "stage_2_stress_mpa": 0.42,
+        "stage_1_sf": 152.5,
+        "stage_2_sf": 88.04,
+        "min_sf": 88.04
+      },
+      "output_torque_nm": 122.1
+    },
+    {
+      "index": 17,
+      "i_total": 33.0,
+      "max_diameter_mm": 21.0,
+      "module_mm": 1.0,
+      "asymmetry_pct": 8.3,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 15,
+        "z_satellite": 6,
+        "n_satellites": 3,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 15.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 9.0,
+        "d_housing_mm": 18.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 4,
+        "z_ring": 18,
+        "z_satellite": 7,
+        "n_satellites": 4,
+        "d_sun_mm": 4.0,
+        "d_ring_mm": 18.0,
+        "d_satellite_mm": 7.0,
+        "d_carrier_mm": 11.0,
+        "d_housing_mm": 21.0,
+        "width_mm": 32,
+        "ratio": 5.5
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.42,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 88.04,
+        "min_sf": 88.04
+      },
+      "output_torque_nm": 122.1
+    },
+    {
+      "index": 18,
+      "i_total": 30.0,
+      "max_diameter_mm": 21.8,
+      "module_mm": 1.25,
+      "asymmetry_pct": 16.7,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 15,
+        "z_satellite": 6,
+        "n_satellites": 3,
+        "d_sun_mm": 3.75,
+        "d_ring_mm": 18.75,
+        "d_satellite_mm": 7.5,
+        "d_carrier_mm": 11.25,
+        "d_housing_mm": 21.75,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 2,
+        "z_ring": 8,
+        "z_satellite": 3,
+        "n_satellites": 4,
+        "d_sun_mm": 2.5,
+        "d_ring_mm": 10.0,
+        "d_satellite_mm": 3.75,
+        "d_carrier_mm": 6.25,
+        "d_housing_mm": 13.0,
+        "width_mm": 32,
+        "ratio": 5.0
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.18,
+        "stage_2_stress_mpa": 0.53,
+        "stage_1_sf": 208.81,
+        "stage_2_sf": 69.6,
+        "min_sf": 69.6
+      },
+      "output_torque_nm": 111.0
+    },
+    {
+      "index": 19,
+      "i_total": 32.0,
+      "max_diameter_mm": 21.8,
+      "module_mm": 1.25,
+      "asymmetry_pct": 11.1,
+      "stage_1": {
+        "z_sun": 3,
+        "z_ring": 15,
+        "z_satellite": 6,
+        "n_satellites": 3,
+        "d_sun_mm": 3.75,
+        "d_ring_mm": 18.75,
+        "d_satellite_mm": 7.5,
+        "d_carrier_mm": 11.25,
+        "d_housing_mm": 21.75,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 3.75,
+        "d_ring_mm": 16.25,
+        "d_satellite_mm": 6.25,
+        "d_carrier_mm": 10.0,
+        "d_housing_mm": 19.25,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.18,
+        "stage_2_stress_mpa": 0.43,
+        "stage_1_sf": 208.81,
+        "stage_2_sf": 85.25,
+        "min_sf": 85.25
+      },
+      "output_torque_nm": 118.4
+    },
+    {
+      "index": 20,
+      "i_total": 32.0,
+      "max_diameter_mm": 22.5,
+      "module_mm": 1.5,
+      "asymmetry_pct": 11.1,
+      "stage_1": {
+        "z_sun": 2,
+        "z_ring": 10,
+        "z_satellite": 4,
+        "n_satellites": 3,
+        "d_sun_mm": 3.0,
+        "d_ring_mm": 15.0,
+        "d_satellite_mm": 6.0,
+        "d_carrier_mm": 9.0,
+        "d_housing_mm": 18.0,
+        "width_mm": 32,
+        "ratio": 6.0
+      },
+      "stage_2": {
+        "z_sun": 3,
+        "z_ring": 13,
+        "z_satellite": 5,
+        "n_satellites": 4,
+        "d_sun_mm": 4.5,
+        "d_ring_mm": 19.5,
+        "d_satellite_mm": 7.5,
+        "d_carrier_mm": 12.0,
+        "d_housing_mm": 22.5,
+        "width_mm": 32,
+        "ratio": 5.333
+      },
+      "stress_analysis": {
+        "stage_1_stress_mpa": 0.2,
+        "stage_2_stress_mpa": 0.39,
+        "stage_1_sf": 186.77,
+        "stage_2_sf": 93.38,
+        "min_sf": 93.38
+      },
+      "output_torque_nm": 118.4
+    }
+  ]
+}
