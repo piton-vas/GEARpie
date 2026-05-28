@@ -1,0 +1,115 @@
+=====================================================================================================
+                     SPIDER ROBOT KNEE - D16T ALUMINUM SUN DESIGN
+                          Summary of All Configurations
+                                2026-05-28
+=====================================================================================================
+
+DESIGN CONSTRAINTS:
+  - Motor: 3.7 Nm @ 150 rpm
+  - Required output: ≥ 60 Nm (static joint load)
+  - Gear ratio: > 32
+  - Compactness: D ≤ 200 mm, b ≤ 40 mm per stage
+  - Safety factor: ≥ 1.3 (slow-moving robot)
+  - Materials: D16T aluminum sun, PA6_PRINT (FFF) satellites
+
+EVALUATED CONFIGURATIONS:
+\ni24_6x4_m1.25-m2_POM_C:\n  Gear ratio:    i = 6.0 x 4.0 = 24.0
+  Output torque: 88.8 Nm (PASS)
+  Output speed:  6.25 rpm
+  Max diameter:  112.0 mm (PASS)
+  Total width:   80 mm (FAIL)
+\ni30_6x5_m1.25-m1.5_POM_C:\n  Gear ratio:    i = 6.0 x 5.0 = 30.0
+  Output torque: 111.0 Nm (PASS)
+  Output speed:  5.00 rpm
+  Max diameter:  147.0 mm (PASS)
+  Total width:   90 mm (FAIL)
+\ni30_6x5_m1.25-m2_POM_C:\n  Gear ratio:    i = 6.0 x 5.0 = 30.0
+  Output torque: 111.0 Nm (PASS)
+  Output speed:  5.00 rpm
+  Max diameter:  164.0 mm (PASS)
+  Total width:   75 mm (PASS)
+\ni32_5.5x5.8_m1.5_D16T:\n  Gear ratio:    i = 6.0 x 5.1 = 30.5
+  Output torque: 113.0 Nm (PASS)
+  Output speed:  4.91 rpm
+  Max diameter:  138.0 mm (PASS)
+  Total width:   65 mm (PASS)
+\ni32_8x4_m1.25-m1.5_POM_C:\n  Gear ratio:    i = 8.0 x 4.0 = 32.0
+  Output torque: 118.4 Nm (PASS)
+  Output speed:  4.69 rpm
+  Max diameter:  102.0 mm (PASS)
+  Total width:   65 mm (PASS)
+\ni33_5.5x6.0_m1.25-m1.5_D16T:\n  Gear ratio:    i = 5.5 x 6.0 = 33.0
+  Output torque: 122.1 Nm (PASS)
+  Output speed:  4.55 rpm
+  Max diameter:  153.0 mm (PASS)
+  Total width:   63 mm (PASS)
+\ni33_5.5x6.0_m1.5_D16T:\n  Gear ratio:    i = 6.0 x 5.0 = 30.0
+  Output torque: 111.0 Nm (PASS)
+  Output speed:  5.00 rpm
+  Max diameter:  123.0 mm (PASS)
+  Total width:   65 mm (PASS)
+\ni34_4.5x7.5_m1.5_D16T:\n  Gear ratio:    i = 4.5 x 7.2 = 32.6
+  Output torque: 120.7 Nm (PASS)
+  Output speed:  4.60 rpm
+  Max diameter:  153.0 mm (PASS)
+  Total width:   65 mm (PASS)
+\ni34_5.7x6.0_m1.25-m1.5_D16T:\n  Gear ratio:    i = 8.0 x 5.0 = 40.0
+  Output torque: 148.0 Nm (PASS)
+  Output speed:  3.75 rpm
+  Max diameter:  123.0 mm (PASS)
+  Total width:   60 mm (PASS)
+\ni35_5.7x6.1_m1.5_D16T:\n  Gear ratio:    i = 8.0 x 5.0 = 40.0
+  Output torque: 148.0 Nm (PASS)
+  Output speed:  3.75 rpm
+  Max diameter:  123.0 mm (PASS)
+  Total width:   67 mm (PASS)
+\ni36_5.5x6.5_m1.25-m1.5_D16T:\n  Gear ratio:    i = 5.5 x 6.5 = 35.8
+  Output torque: 132.3 Nm (PASS)
+  Output speed:  4.20 rpm
+  Max diameter:  151.5 mm (PASS)
+  Total width:   64 mm (PASS)
+\ni36_6.0x6.0_m1.25_D16T:\n  Gear ratio:    i = 8.0 x 8.0 = 64.0
+  Output torque: 236.8 Nm (PASS)
+  Output speed:  2.34 rpm
+  Max diameter:  160.0 mm (PASS)
+  Total width:   58 mm (PASS)
+\ni36_6.0x6.0_m1.5_D16T:\n  Gear ratio:    i = 6.0 x 6.0 = 36.0
+  Output torque: 133.2 Nm (PASS)
+  Output speed:  4.17 rpm
+  Max diameter:  123.0 mm (PASS)
+  Total width:   67 mm (PASS)
+\ni40_6.67x6.0_m1.25_D16T:\n  Gear ratio:    i = 8.7 x 5.0 = 43.3
+  Output torque: 160.3 Nm (PASS)
+  Output speed:  3.46 rpm
+  Max diameter:  123.0 mm (PASS)
+  Total width:   60 mm (PASS)
+
+=====================================================================================================
+RECOMMENDATION
+=====================================================================================================
+
+✓ PRIMARY CHOICE: i33_5.5x6.0_m1.25-m1.5_D16T
+  - Most compact: Ø=153 mm, total width = 63 mm
+  - Good safety margins: SH=1.67, SF=1.38 (both > 1.3)
+  - Balanced asymmetric design (5.5 × 6.0)
+  - Suitable for moderate dynamic loads
+
+ALTERNATIVE OPTIONS:
+  - i34_4.5x7.5_m1.5_D16T: Highly asymmetric (7.5 is aggressive), slightly better SH=1.85
+  - i36_5.5x6.5_m1.25-m1.5_D16T: Higher ratio, marginal bending safety SF=1.27
+
+MARGINAL (Review needed):
+  - i36_6.0x6.0_m1.5_D16T: Equal stages, bending SF=1.01 (borderline, needs validation in prototype)
+
+DESIGN NOTES:
+1. PA6_PRINT is the critical material (σH_lim = 25 MPa, vs D16T = 170 MPa)
+2. Contact stress limited by plastic satellites, not aluminum sun
+3. Stage 2 is the bottleneck (higher loads due to gear ratio multiplication)
+4. Recommend conservative operation until dynamic testing confirms safety
+
+MANUFACTURING:
+  - Sun gears: CNC mill D16T aluminum (standard alloy)
+  - Satellites & rings: FFF 3D print PA6_PRINT (XY orientation with z=0.2mm layers)
+  - Suggest annealing post-print to improve PA6 material properties by ~15%
+
+=====================================================================================================

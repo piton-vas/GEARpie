@@ -1,0 +1,41 @@
+==========================================================================================
+  SPIDER ROBOT KNEE: i24_6x4_m1.25-m2_POM_C
+  Materials: Sun=POM_C (σH_lim=35 MPa), Satellites=PA6_PRINT (σH_lim=25 MPa)
+==========================================================================================
+
+INPUT DATA
+------------------------------------------------------------------------------------------
+  Input:       T = 3.7 Nm at n = 150 rpm
+  Requirements: T_out >= 60 Nm, D <= 200 mm, Ratio > 32, Safety >= 1.3
+
+SUMMARY
+------------------------------------------------------------------------------------------
+  Gear ratio:    i = 6.0 x 4.0 = 24.0
+  Output torque: 88.8 Nm (PASS)
+  Output speed:  6.25 rpm
+  Max diameter:  112.0 mm (PASS)
+  Total width:   80 mm (FAIL)
+  Min safety:    SH=814.73, SF=0.78 (MARGINAL)
+  Overall:       REVIEW NEEDED
+
+STAGE 1 (i=6.0, 3 satellites)
+------------------------------------------------------------------------------------------
+  Module m=1.25, Width b=35 mm
+  Z_sun=18, Z_planet=36, Z_ring=90
+  d_sun=22.5, d_planet=45.0, d_ring=112.5 mm
+  Load F_t=328.9 N
+  Contact: σH=0.01 MPa (lim=25.0) -> SH=999.00
+  Bending:  σF=11.28 MPa (lim=16.0) -> SF=1.42
+  Output: T=22.2 Nm, n=25.0 rpm
+
+STAGE 2 (i=4.0, 4 satellites)
+------------------------------------------------------------------------------------------
+  Module m=2.0, Width b=45 mm
+  Z_sun=18, Z_planet=18, Z_ring=54
+  d_sun=36.0, d_planet=36.0, d_ring=108.0 mm
+  Load F_t=1233.3 N
+  Contact: σH=0.03 MPa (lim=25.0) -> SH=814.73
+  Bending:  σF=20.56 MPa (lim=16.0) -> SF=0.78
+  Output: T=88.8 Nm, n=6.25 rpm
+
+==========================================================================================

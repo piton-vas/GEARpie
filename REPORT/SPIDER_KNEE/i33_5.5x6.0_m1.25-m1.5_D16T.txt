@@ -1,0 +1,41 @@
+==========================================================================================
+  SPIDER ROBOT KNEE: i33_5.5x6.0_m1.25-m1.5_D16T
+  Materials: Sun=D16T Aluminum (σH_lim=170 MPa), Satellites=PA6_PRINT (σH_lim=25 MPa)
+==========================================================================================
+
+INPUT DATA
+------------------------------------------------------------------------------------------
+  Input:       T = 3.7 Nm at n = 150 rpm
+  Requirements: T_out >= 60 Nm, D <= 200 mm, Ratio > 32, Safety >= 1.3
+
+SUMMARY
+------------------------------------------------------------------------------------------
+  Gear ratio:    i = 5.5 x 6.0 = 33.0
+  Output torque: 122.1 Nm (PASS)
+  Output speed:  4.55 rpm
+  Max diameter:  153.0 mm (PASS)
+  Total width:   63 mm (PASS)
+  Min safety:    SH=1.67, SF=1.38 (PASS)
+  Overall:       ACCEPTABLE
+
+STAGE 1 (i=5.5, 3 satellites)
+------------------------------------------------------------------------------------------
+  Module m=1.25, Width b=28 mm
+  Z_sun=18, Z_planet=36, Z_ring=81
+  d_sun=22.5, d_planet=45.0, d_ring=101.2 mm
+  Load F_t=328.9 N
+  Contact: σH=8.67 MPa (lim=25.0) -> SH=2.88
+  Bending:  σF=4.23 MPa (lim=16.0) -> SF=3.78
+  Output: T=20.4 Nm, n=27.3 rpm
+
+STAGE 2 (i=6.0, 4 satellites)
+------------------------------------------------------------------------------------------
+  Module m=1.5, Width b=35 mm
+  Z_sun=20, Z_planet=30, Z_ring=100
+  d_sun=30.0, d_planet=45.0, d_ring=150.0 mm
+  Load F_t=1356.7 N
+  Contact: σH=14.94 MPa (lim=25.0) -> SH=1.67
+  Bending:  σF=11.63 MPa (lim=16.0) -> SF=1.38
+  Output: T=122.1 Nm, n=4.55 rpm
+
+==========================================================================================

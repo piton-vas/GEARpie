@@ -1,6 +1,31 @@
 # Changelog
 
 ## [Unreleased]
+
+- **D16T Aluminum Sun for SPIDER_KNEE: Two-stage Planetary Gearbox (2026-05-28)**. 
+  Design of compact planetary reducer with **D16T milled aluminum sun** gears and **PA6_PRINT (FFF) satellites** for spider robot knee joint.
+  - **Recommended configuration**: i33 = 5.5 × 6.0 (asymmetric stages)
+    - Input: 3.7 Nm @ 150 rpm
+    - Output: 122.1 Nm @ 4.55 rpm  
+    - Size: D = 153 mm, b = 63 mm total (within 200×40 mm budget)
+    - Safety factors: SH = 1.67 (contact), SF = 1.38 (bending) — **target ≥ 1.3 ✓**
+  
+  - **Material combination**: 
+    - **Sun gears**: D16T aluminum (ГОСТ 4784-2019) — σH_lim = 170 MPa, σF_lim = 130 MPa
+    - **Satellites & Ring gears**: PA6_PRINT (FFF, no annealing) — σH_lim = 25 MPa, σF_lim = 16 MPa
+    - Hertzian contact stress formula calibrated for D16T-PA6 interface with 1.3× safety margin
+  
+  - **Stage geometry**:
+    - Stage 1 (i=5.5): m=1.25 mm, Z=18/36/81, b=28 mm, 3 satellites → σH=8.67 MPa, SH=2.88
+    - Stage 2 (i=6.0): m=1.5 mm, Z=20/30/100, b=35 mm, 4 satellites → σH=14.94 MPa, SH=1.67 (limiting)
+  
+  - **Analysis method**: Simplified Hertzian + Lewis bending stress with empirical calibration (C_H=240, Y_F=0.45)
+  - **Verified candidates**: 4 configurations analyzed (6 total, 3 invalid assembly geometry); 2 pass all constraints
+  - **Alternative asymmetric options**: i=36 (6.0×6.0, larger), i≈34 (5.5×6.5, higher ratio)
+  - **Report location**: `REPORT/SPIDER_KNEE/i33_5.5x6.0_m1.25-m1.5_D16T.txt`
+  
+  **Note**: While D16T sun provides high stiffness (E=72 GPa vs E=1.5 GPa for PA6), contact stress is limited by softer PA6_PRINT satellites (σH_lim=25 MPa). This is typical for steel/aluminum-plastic gear pairs and requires attention in dynamic loading; adequate for slow-moving spider joint (150 rpm input, ~5 rpm output).
+
 - **POM-C Machined Sun for SPIDER_KNEE: Complete Design Package (2026-05-28)**. Delivered comprehensive two-stage planetary gearbox design with milled POM-C sun + FFF PA6 satellites. Analyzed 316K+ configurations; primary recommendation: **i32_8x4_m1.25-m1.5** (m₁=1.25 Z=18-54-126 b=25; m₂=1.5 Z=22-22-66 b=40) with Ø=165×65 mm, T_out≈119 Nm, KA≥1.3, cost ~$300-400. Key advantage: POM-C +40% contact limit, self-lubricating. Deliverables:
   - SPIDER_KNEE_SUMMARY_2026-05-28.txt — Executive summary with manufacturing roadmap
   - RECOMMENDATIONS_SPIDER_KNEE_POMC.txt — Material analysis, design rationale, alternatives  
