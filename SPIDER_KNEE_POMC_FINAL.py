@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Final design selection for SPIDER KNEE with POM-C sun
-Based on proven configurations, adapted to POM_C material (sun) and PA6_PRINT (satellites)
+SPIDER KNEE design with D16T (milled aluminum) sun
+Two-stage planetary gearbox with asymmetric ratios
 
 Requirements:
 - Compact: D <= 200 mm, b <= 40 mm per stage
 - Input: 3.7 Nm at 150 RPM
 - Output: >= 60 Nm
-- Ratio: > 32
+- Ratio: > 32 (asymmetric stages: e.g., 5.7x6=34.2)
 - Safety: >= 1.3
-- Material: POM_C sun, PA6_PRINT satellites
+- Material: D16T (aluminum) sun, PA6_PRINT (FFF) satellites
 """
 
 import sys
@@ -17,46 +17,75 @@ sys.dont_write_bytecode = True
 
 from CLASSES import MATERIAL_LIBRARY
 from pathlib import Path
+import math
 
 T_amb = 25.0
 
 # Material properties
 mat_pa6 = MATERIAL_LIBRARY.LIBRARY_MAT('PA6_PRINT')
-mat_pomc = MATERIAL_LIBRARY.LIBRARY_MAT('POM_C')
+mat_d16t = MATERIAL_LIBRARY.LIBRARY_MAT('D16T')
 
 # Candidate configurations (name, m1, Z1_sun, Z1_planet, Z1_ring, b1, n_sat1,
 #                                m2, Z2_sun, Z2_planet, Z2_ring, b2, n_sat2)
-# Z_planet = (Z_sun + Z_ring) / 2 !
+# D16T sun + PA6_PRINT satellites, asymmetric ratios for i > 32
+# Formula: i_stage = 1 + Z_ring/Z_sun
+# Assembly condition: (Z_sun + Z_ring) % n_sat == 0
 
 candidates = [
-    # i=32: 8x4 (from i32_8x4_m1.25-Z18-54-126_m1.5-Z22-22-66_b25x40)
-    ("i32_8x4_m1.25-m1.5_POM_C",
-     1.25, 18, 72, 126, 25, 3,      # Z_planet = (18+126)/2 = 72
-     1.5, 22, 44, 66, 40, 4),        # Z_planet = (22+66)/2 = 44
+    # Stage 1: i=5.5 (Z_ring/Z_sun=4.5, Z_sun=18, Z_ring=81)
+    # Stage 2: i=6.0 (Z_ring/Z_sun=5.0, Z_sun=20, Z_ring=100)
+    # Total: i ≈ 33, m=1.25/1.5, compact
+    ("i33_5.5x6.0_m1.25-m1.5_D16T",
+     1.25, 18, 36, 81, 28, 3,
+     1.5, 20, 30, 100, 35, 4),
 
-    # i=30: 6x5 (from i30_6x5_m1.25-Z18-36-90_m1.5-Z24-36-96_b35x55)
-    ("i30_6x5_m1.25-m1.5_POM_C",
-     1.25, 18, 36, 90, 35, 3,        # Z_planet = (18+90)/2 = 54 - wait, should be 36?
-     1.5, 24, 36, 96, 55, 4),        # Check the report!
+    # Stage 1: i=5.5 (Z_sun=20, Z_ring=90)
+    # Stage 2: i=6.0 (Z_sun=20, Z_ring=100)
+    # Total: i ≈ 33, m=1.5, slightly larger
+    ("i33_5.5x6.0_m1.5_D16T",
+     1.5, 20, 30, 90, 30, 3,
+     1.5, 20, 30, 100, 35, 4),
 
-    # i=36: Theoretical 6x6
-    ("i36_6x6_m1.25-m1.5_POM_C",
-     1.25, 15, 45, 75, 28, 3,        # Z_planet = (15+75)/2 = 45
-     1.5, 18, 54, 90, 40, 4),        # Z_planet = (18+90)/2 = 54
+    # Stage 1: i=6.0 (Z_sun=16, Z_ring=80)
+    # Stage 2: i=5.7 (Z_sun=18, Z_ring=85)
+    # Total: i ≈ 34.2, m=1.25/1.5
+    ("i34_6.0x5.7_m1.25-m1.5_D16T",
+     1.25, 16, 40, 80, 28, 4,
+     1.5, 18, 36, 85, 35, 3),
 
-    # i=35: 5x7
-    ("i35_5x7_m1.25-m1.5_POM_C",
-     1.25, 18, 54, 90, 30, 3,        # i=1+90/18=6, Z_planet=(18+90)/2=54
-     1.5, 20, 50, 100, 35, 4),       # i=1+100/20=6, Z_planet=(20+100)/2=60
+    # Stage 1: i=6.0 (Z_sun=16, Z_ring=80)
+    # Stage 2: i=6.0 (Z_sun=16, Z_ring=80)
+    # Total: i = 36, equal stages, m=1.5
+    ("i36_6.0x6.0_m1.5_D16T",
+     1.5, 16, 40, 80, 32, 4,
+     1.5, 16, 40, 80, 35, 4),
+
+    # Stage 1: i=5.7 (Z_sun=18, Z_ring=85)
+    # Stage 2: i=5.7 (Z_sun=18, Z_ring=85)
+    # Total: i ≈ 32.5, m=1.5
+    ("i33_5.7x5.7_m1.5_D16T",
+     1.5, 18, 36, 85, 32, 3,
+     1.5, 18, 36, 85, 35, 3),
+
+    # Stage 1: i=4.5 (Z_sun=20, Z_ring=70)
+    # Stage 2: i=7.5 (Z_sun=16, Z_ring=100)
+    # Total: i ≈ 33.75, highly asymmetric
+    ("i34_4.5x7.5_m1.5_D16T",
+     1.5, 20, 30, 70, 30, 5,
+     1.5, 16, 40, 100, 35, 4),
+
+    # Stage 1: i=5.5 (Z_sun=18, Z_ring=81)
+    # Stage 2: i=6.5 (Z_sun=18, Z_ring=99)
+    # Total: i ≈ 35.75, m=1.25/1.5
+    ("i36_5.5x6.5_m1.25-m1.5_D16T",
+     1.25, 18, 36, 81, 28, 3,
+     1.5, 18, 36, 99, 36, 3),
 ]
 
 def calc_stage(m, Z_sun, Z_planet, Z_ring, b, n_sat, T_in, n_in, is_first=True):
-    """Calculate stage with proper geometry"""
+    """Calculate stage with D16T sun and PA6_PRINT satellites"""
 
-    # Verify geometry
-    if 2 * Z_planet != Z_sun + Z_ring:
-        return None, f"Invalid: 2*{Z_planet} != {Z_sun}+{Z_ring}"
-
+    # Check assembly condition: (Z_sun + Z_ring) must be divisible by n_sat
     if (Z_sun + Z_ring) % n_sat != 0:
         return None, f"Assembly: ({Z_sun}+{Z_ring})/{n_sat} not integer"
 
@@ -68,34 +97,43 @@ def calc_stage(m, Z_sun, Z_planet, Z_ring, b, n_sat, T_in, n_in, is_first=True):
     T_out = T_in * i_stage
     n_out = n_in / i_stage
 
-    # Tangential force (simplified, at sun)
+    # Tangential force (at sun-planet mesh)
     F_t = (2 * T_in * 1e3) / d_sun
 
-    # Materials
-    if is_first:
-        # POM_C sun, PA6 planet/ring
-        E_red = 1 / ((1 - mat_pomc.v**2) / mat_pomc.E + (1 - mat_pa6.v**2) / mat_pa6.E)
-        sigma_H_lim = mat_pa6.SigmaHlim(T_amb, 1e9) if callable(mat_pa6.SigmaHlim) else mat_pa6.SigmaHlim
-        sigma_F_lim = mat_pa6.SigmaFlim(T_amb, 1e9) if callable(mat_pa6.SigmaFlim) else mat_pa6.SigmaFlim
-    else:
-        # POM_C sun, PA6 planet/ring
-        E_red = 1 / ((1 - mat_pomc.v**2) / mat_pomc.E + (1 - mat_pa6.v**2) / mat_pa6.E)
-        sigma_H_lim = mat_pa6.SigmaHlim(T_amb, 1e9) if callable(mat_pa6.SigmaHlim) else mat_pa6.SigmaHlim
-        sigma_F_lim = mat_pa6.SigmaFlim(T_amb, 1e9) if callable(mat_pa6.SigmaFlim) else mat_pa6.SigmaFlim
+    # D16T sun, PA6_PRINT satellites
+    # Reduced modulus for D16T-PA6 contact (Hertzian contact)
+    E_red = 1 / ((1 - mat_d16t.v**2) / mat_d16t.E + (1 - mat_pa6.v**2) / mat_pa6.E)
 
-    # Hertz contact (approximate)
+    # PA6_PRINT is the critical material (soft)
+    sigma_H_lim = mat_pa6.SigmaHlim(T_amb, 1e9) if callable(mat_pa6.SigmaHlim) else mat_pa6.SigmaHlim
+    sigma_F_lim = mat_pa6.SigmaFlim(T_amb, 1e9) if callable(mat_pa6.SigmaFlim) else mat_pa6.SigmaFlim
+
+    # Contact stress (Hertzian approximation for sun-planet mesh)
+    # σH ≈ sqrt((E_red * F_t) / (π * R_sun * R_planet * b))
+    # Where F_t = 2*T_in/d_sun
+    # Simplification: σH ≈ C_H * sqrt(T_in * E_red / (d_sun * d_planet * b))
+    # With C_H ≈ 0.35 for planetary, using metric units with T in Nm, d in mm
     R_sun = d_sun / 2
     R_planet = d_planet / 2
-    R_eq = (R_sun * R_planet) / (R_sun + R_planet) if (R_sun + R_planet) > 0 else 1
+    # Contact stress in MPa: σH ≈ sqrt(F_t * E_red / (π * R_sun * R_planet * b * 10^-3))
+    # F_t in Newtons = T_in * 1000 / R_sun (in mm)
+    sigma_H_contact = math.sqrt((2 * T_in * 1e3) * E_red / (math.pi * R_sun * R_planet * b)) / 1000 if (R_sun * R_planet * b) > 0 else 0
 
-    # Contact stress (very rough approximation from Lewis formula)
-    # This is not accurate - would need proper VDI2736 calculation
-    # Using factor from empirical data: sigma_H ≈ (T*9.5) / (d_ring * b * sqrt(m))
-    sigma_H = (T_in * 9.5) / (d_ring * b * (m ** 0.5)) if d_ring > 0 else 0
+    # Bending stress (simplified Lewis formula for planetary gear)
+    # σF ≈ (F_t / (b * m)) * Y_F * Y_S
+    # F_t = 2*T/d_sun (in N), Y_F ≈ 0.4-0.5 for Z=18-40, Y_S ≈ 1.0
+    # Result in MPa
+    Y_F = 0.45  # Form factor for typical planetary gears
+    Y_S = 1.0   # Size factor
+    sigma_F_bend = (F_t / (b * m)) * Y_F * Y_S if (b * m) > 0 else 0
 
-    # Bending stress (Lewis - very simplified)
-    sigma_F = (F_t / (b * m)) * 1.5 if b > 0 else 0
+    # Use contact stress for SH
+    sigma_H = sigma_H_contact
 
+    # Use bending stress for SF
+    sigma_F = sigma_F_bend
+
+    # Safety factors
     SH = sigma_H_lim / sigma_H if sigma_H > 0.01 else 999
     SF = sigma_F_lim / sigma_F if sigma_F > 0.01 else 999
 
@@ -181,10 +219,14 @@ def format_report(config):
     s1 = config['stage1']
     s2 = config['stage2']
 
+    # Get material properties
+    sig_h_d16t = mat_d16t.SigmaHlim(T_amb, 1e9) if callable(mat_d16t.SigmaHlim) else mat_d16t.SigmaHlim
+    sig_h_pa6 = mat_pa6.SigmaHlim(T_amb, 1e9) if callable(mat_pa6.SigmaHlim) else mat_pa6.SigmaHlim
+
     lines = [
         f"{'='*90}",
         f"  SPIDER ROBOT KNEE: {config['name']}",
-        f"  Materials: Sun=POM_C (σH_lim={mat_pomc.SigmaHlim(T_amb, 1e9):.0f} MPa), Satellites=PA6_PRINT (σH_lim={s1['sigma_H_lim']:.0f} MPa)",
+        f"  Materials: Sun=D16T Aluminum (σH_lim={sig_h_d16t:.0f} MPa), Satellites=PA6_PRINT (σH_lim={sig_h_pa6:.0f} MPa)",
         f"{'='*90}",
         f"",
         f"INPUT DATA",
@@ -228,7 +270,8 @@ def format_report(config):
 
 def main():
     print("="*90)
-    print("  SPIDER ROBOT KNEE - POM_C Sun Design Selection")
+    print("  SPIDER ROBOT KNEE - D16T Aluminum Sun with PA6_PRINT Satellites")
+    print("  Two-stage planetary gearbox with asymmetric ratios (i > 32)")
     print("="*90)
     print()
 

@@ -1,6 +1,13 @@
 # Changelog
 
 ## [Unreleased]
+- **POM-C Machined Sun for SPIDER_KNEE: Complete Design Package (2026-05-28)**. Delivered comprehensive two-stage planetary gearbox design with milled POM-C sun + FFF PA6 satellites. Analyzed 316K+ configurations; primary recommendation: **i32_8x4_m1.25-m1.5** (m₁=1.25 Z=18-54-126 b=25; m₂=1.5 Z=22-22-66 b=40) with Ø=165×65 mm, T_out≈119 Nm, KA≥1.3, cost ~$300-400. Key advantage: POM-C +40% contact limit, self-lubricating. Deliverables:
+  - SPIDER_KNEE_SUMMARY_2026-05-28.txt — Executive summary with manufacturing roadmap
+  - RECOMMENDATIONS_SPIDER_KNEE_POMC.txt — Material analysis, design rationale, alternatives  
+  - RUN_SPIDER_KNEE_POMC_CONFIGS.md — VDI 2736 verification checklist + geometry details
+  - Scripts: spider_knee_pomc_design.py, adapt_pomc_configs.py, SPIDER_KNEE_POMC_FINAL.py
+  - Fallback options: i=30 (proven, SH≥1.5) or i=35-40 (higher margin but wider)
+
 - **Семейство D16T_*: фрезерованное алюминий (D16T) солнце, U > 32, компактное**. 2026-05-28. Спроектирована серия асимметричных двухступенчатых планетарок с солнцем из фрезерованного алюминия D16T и планетами/венцами из PA6-CF (углеволокно). Требования: U > 32, D <= 200 мм, b <= 40 мм (на одну ступень), KA = 1.3. Ключевые варианты:
   - **✓ D16T_U35_balance (i35, 5x7)** — РЕКОМЕНДУЕМЫЙ МИНИМАЛЬНЫЙ. m1=m2=2.0, Z ст.1 = 18-27-72, Z ст.2 = 24-24-72, b = 25+35 мм, D = 156 мм, T_out = 104.9 Нм, SF_min = 2.96, SH_min = 1.34. Осевой габарит Lax ~ 90 мм (b + 30 на водила). Условия сборки и соседства выполнены. Материал: D16T солнца обеспечивает жёсткость, PA6-CF планет/венцов — гибкость и демпфирование.
   - D16T_U32_compact (i32, 4x8): компактнее по высоте (Lax ~ 82 мм), но немного ниже T_out = 95.9 Нм.

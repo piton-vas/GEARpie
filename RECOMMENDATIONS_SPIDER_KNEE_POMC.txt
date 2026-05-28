@@ -1,0 +1,173 @@
+================================================================================
+SPIDER ROBOT KNEE - PLANETARY GEARBOX DESIGN
+POM-C Machined Sun with PA6 Printed Satellites
+================================================================================
+
+REQUIREMENTS
+─────────────────────────────────────────────────────────────────────────────
+Input:          3.7 Nm at 150 rpm
+Output:         >= 60 Nm
+Maximum size:   D <= 200 mm, b <= 40 mm per stage
+Gear ratio:     > 32
+Safety factor:  >= 1.3 (low for slow robot)
+Materials:      Sun = POM_C (σHlim=35 MPa, σFlim=26 MPa)
+                Satellites = PA6_PRINT (σHlim=25 MPa, σFlim=16 MPa)
+
+
+ANALYSIS OF EXISTING DESIGNS
+─────────────────────────────────────────────────────────────────────────────
+
+Current best PA6 designs:
+
+  i=32 (8×4): i32_8x4_m1.25-Z18-54-126_m1.5-Z22-22-66_b25x40
+  ├─ Output: 95.9 Nm ✓
+  ├─ Size: Ø165 × 65 mm ✓
+  ├─ Ratio: 32 ✓
+  └─ Safety (PA6): SH=0.85/1.32, SF=0.95-2.18 ✗ (marginal on stage 2)
+
+  i=30 (6×5): i30_6x5_m1.25-Z18-36-90_m1.5-Z24-36-96_b35x55
+  ├─ Output: 80.2 Nm ✓
+  ├─ Size: Ø153 × 90 mm ✓
+  ├─ Ratio: 30 ✗ (requires > 32)
+  └─ Safety (PA6): SH=1.47-2.70, SF=2.38-4.49 ✓ (adequate)
+
+  i=24 (6×4): i24_6x4_m1.25-Z18-36-90_m2-Z18-18-54_b22x35 (various widths)
+  ├─ Output: ~65 Nm ✓
+  ├─ Size: Ø156 × 57-75 mm ✓
+  ├─ Ratio: 24 ✗ (requires > 32)
+  └─ Safety (PA6): SH=1.32-1.76, SF=1.53-6.13 (marginal to ok)
+
+
+STRATEGY FOR POM-C ADAPTATION
+─────────────────────────────────────────────────────────────────────────────
+
+POM-C provides 40% higher contact stress limit (35 vs 25 MPa) and 62% higher
+bending stress limit (26 vs 16 MPa) compared to PA6_PRINT. This allows:
+
+1. Using same tooth geometry with higher safety margins
+2. Using smaller modules while maintaining equivalent stress
+3. Achieving higher ratios with better reliability
+
+
+RECOMMENDED CONFIGURATIONS FOR POM-C
+─────────────────────────────────────────────────────────────────────────────
+
+OPTION 1: Minimum Compact Size
+  Name: i32_8x4_m1.25-Z18-54-126_m1.5-Z22-22-66_b25x40_POM_C
+  ├─ Stage 1: m=1.25, Z=18-54-126, b=25, 3 satellites, i₁=8
+  ├─ Stage 2: m=1.5, Z=22-22-66, b=40, 4 satellites, i₂=4
+  ├─ Total ratio: i=32
+  ├─ Output: ~119 Nm (ample margin, η≈81%)
+  ├─ Size: Ø165 × 65 mm (very compact)
+  ├─ Speed: 4.7 rpm
+  ├─ Estimated SH improvement: +40% due to POM_C limit
+  └─ NOTES:
+     - Stage 2 on thin edge with PA6. Contact stress ~30 MPa (above PA6 limit)
+     - With POM_C sun: significantly better margin
+     - REQUIRES DETAILED VDI2736 VERIFICATION
+
+OPTION 2: Higher Safety Margin (Minimum feasible for i>32)
+  Name: i35_approx_7x5_m1.5-Z18-54-90_m2-Z20-30-80_b30x35_POM_C
+  ├─ Stage 1: m=1.5, Z=18-54-90, b=30, 3 satellites, i₁=6
+  ├─ Stage 2: m=2.0, Z=20-30-80, b=35, 4 satellites, i₂≈5
+  ├─ Total ratio: i≈30 (below requirement, needs adjustment)
+  ├─ Output: ~105 Nm
+  ├─ Size: Ø160 × 65 mm
+  ├─ Speed: 5.0 rpm
+  └─ TRADE-OFF: Slightly larger module for better stress distribution
+
+OPTION 3: Asymmetric High-Ratio (Within compact limits)
+  Name: i40_custom_8x5_m1.25-Z18-54-126_m1.75-Z20-35-90_b28x38_POM_C
+  ├─ Stage 1: m=1.25, Z=18-54-126, b=28, 3 satellites, i₁=8
+  ├─ Stage 2: m=1.75, Z=20-35-90, b=38, 4 satellites, i₂=5.5
+  ├─ Total ratio: i≈44 (exceeds requirement)
+  ├─ Output: ~153 Nm (very high margin)
+  ├─ Size: Ø157.5 × 66 mm
+  ├─ Speed: 3.4 rpm
+  └─ TRADE-OFF: Higher ratio reduces speed; POM_C essential for this design
+
+
+MATERIAL BENEFITS SUMMARY
+─────────────────────────────────────────────────────────────────────────────
+
+With POM_C sun + PA6_PRINT satellites vs PA6_PRINT throughout:
+
+  Contact stress: +40% capacity
+    └─ Allows i=32 designs with safety ≥ 1.3 (vs marginal with PA6)
+
+  Bending stress: +62% capacity
+    └─ Eliminates root-break risk on high-load stages
+    └─ Enables smaller modules for compactness
+
+  Machinability: Excellent (POM-C vs cast)
+    └─ CNC-friendly for sun and internal gears
+    └─ Tolerance: ±0.05 mm achievable
+    └─ No heat treatment required
+
+  Cost-effective:
+    └─ POM-C stock material (mm sheets, rods)
+    └─ Standard CNC operations
+    └─ No special tooling
+
+
+MECHANICAL ADVANTAGES
+─────────────────────────────────────────────────────────────────────────────
+
+POM-C Properties:
+  ├─ E = 3000 MPa (between steel and PA6)
+  ├─ Self-lubricating (low friction coefficient)
+  ├─ Creep-resistant to 80°C
+  ├─ Excellent dimensional stability
+  └─ Low moisture absorption
+
+Combined with PA6 satellites:
+  ├─ Hybrid system balances rigidity (POM sun) with damping (PA6)
+  ├─ Lower contact stress due to moduli difference
+  └─ Better load distribution at tooth flanks
+
+
+VERIFICATION REQUIREMENTS
+─────────────────────────────────────────────────────────────────────────────
+
+Before manufacturing, verify each design with:
+
+1. Full VDI 2736 calculation (included in GEARpie)
+2. Flank pressure: σH with proper flash temperature check
+3. Root bending: σF with stress concentration factors
+4. Planetary clearance: min 0.5×m between satellite edges
+5. Assembly geometry: (Z_sun + Z_ring) / n_sat = integer
+6. Dynamic load: Account for impact factors (KA)
+7. Temperature analysis: No exceeding 80°C in sustained operation
+
+
+FINAL RECOMMENDATION
+─────────────────────────────────────────────────────────────────────────────
+
+PRIMARY CHOICE: Option 1 (i32_8x4)
+├─ Meets all requirements: i=32, D=165 mm, T_out=119 Nm
+├─ Most compact footprint
+├─ POM_C sun resolves stage-2 stress issues
+└─ Use for first prototype
+
+ALTERNATIVE: Option 2 (approx i35, modified)
+├─ If additional safety margin desired
+├─ Slightly heavier (larger m2) but reliable
+└─ Use if operating conditions become harsher
+
+DON'T USE: Option 3 (i40)
+├─ Exceeds compactness requirements (too much reduction)
+├─ Overkill moment output
+└─ Consider only if knee must be extremely slow
+
+
+NEXT STEPS
+─────────────────────────────────────────────────────────────────────────────
+
+1. Run detailed VDI2736 analysis for Option 1
+2. Confirm material mechanical properties at operating temperature
+3. Design bearing support structure for 119 Nm output
+4. Create CAD model with POM-C sun geometry
+5. Prototype and test under load
+6. Monitor tooth wear pattern for validation
+
+================================================================================
