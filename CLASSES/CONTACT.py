@@ -91,11 +91,6 @@ class HERTZ:
                  (GMAT.MAT2 in polymers and GMAT.MAT1 in metals):
                 # полимер по металлу — заметно ниже за счёт переноса плёнки
                 self.CoF = 0.20
-            elif GMAT.MAT1 != GMAT.MAT2 and GMAT.MAT1 == ('POM' or 'PA66'):
-                self.CoF = 0.18
-            elif GMAT.MAT1 != GMAT.MAT2 and\
-                GMAT.MAT1 == ('STEEL' or 'POM' or 'PA66'):
-                 self.CoF = 0.2
             elif GMAT.MAT1 == GMAT.MAT2 == 'STEEL':
                 self.CoF = 0.8
             else:

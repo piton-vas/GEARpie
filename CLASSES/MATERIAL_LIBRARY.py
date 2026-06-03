@@ -42,8 +42,12 @@ class LIBRARY_MAT:
         self.cp = 465
         self.k = 46
         self.rho = 7830
-        self.SigmaHlim = 1500
-        self.SigmaFlim = 430
+        # Цементируемая сталь (Eh), грейд MQ по ISO 6336-5:
+        #   σHlim ≈ 1300–1650 МПа, σFlim ≈ 430–500 МПа.
+        # S-N кривая не задана — возвращаем предел выносливости как константу
+        # (NL=1e8 в пайплайне ≈ область выносливости) callable для VDI2736.LCC.
+        self.SigmaHlim = lambda temp, cycles: 1500
+        self.SigmaFlim = lambda temp, cycles: 430
 
     def ADI(self):
         self.E = 210e3
@@ -51,8 +55,11 @@ class LIBRARY_MAT:
         self.cp = 460.548
         self.k = 55
         self.rho = 7850
-        self.SigmaHlim = 700
-        self.SigmaFlim = 250
+        # Изотермически закалённый чугун ADI (ausferritic SG iron) по ISO 6336-5
+        # / ISO 17804: σHlim ≈ 580–800 МПа; σFlim ≈ 230–250 МПа (σFE 460–490).
+        # Константа-предел выносливости, обёрнутая в callable для VDI2736.LCC.
+        self.SigmaHlim = lambda temp, cycles: 700
+        self.SigmaFlim = lambda temp, cycles: 250
 
     def POM(self):
         self.E = 3.2e3
@@ -152,6 +159,23 @@ class LIBRARY_MAT:
         self.rho = 1130
         self.SigmaHlim = lambda temp, cycles: 25
         self.SigmaFlim = lambda temp, cycles: 16
+
+    def PA6_ANNEAL(self):
+        # PA6 печатный (FFF) ПОСЛЕ ОТЖИГА (термообработка для снятия
+        # внутренних напряжений и роста кристалличности).
+        # Отжиг повышает прочность/жёсткость и теплостойкость FFF-нейлона:
+        #   σt, σизг   +15...25 %; E +10...20 %; HDT существенно выше.
+        # Консервативная оценка относительно PA6_PRINT (без отжига):
+        #   E +13 %  (1500 -> 1700) — рост модуля чуть поднимает σH по Герцу,
+        #   σHlim +16 % (25 -> 29), σFlim +19 % (16 -> 19).
+        # Чистый выигрыш по SH ~ +7...8 % (рост σHlim частично съедается ростом E).
+        self.E = 1700
+        self.v = 0.4
+        self.cp = 1700
+        self.k = 0.25
+        self.rho = 1130
+        self.SigmaHlim = lambda temp, cycles: 29
+        self.SigmaFlim = lambda temp, cycles: 19
 
     def POM_C(self):
         # POM-C (полиоксиметилен, кополимер) фрезерованный.

@@ -45,3 +45,14 @@ htmlcov/
 
 # Локальные отчёты пользователя (sample-отчёты уже в индексе и останутся)
 REPORT/SPIDER*.txt
+
+# Транзиентные логи прогонов
+REPORT/**/_run.log
+
+# Кэш расчётов скила planetary-gearbox теперь ОТСЛЕЖИВАЕТСЯ (готовые дизайны в git).
+
+# Локальные кэши standalone-инструментов spider_*.py (регенерируются прогоном;
+# единый источник готовых коробок — кэш скила skills/planetary-gearbox/designs/)
+REPORT/SPIDER_KNEE/_data/
+REPORT/SPIDER_THIGH/_data/
+spider_thigh_results.json

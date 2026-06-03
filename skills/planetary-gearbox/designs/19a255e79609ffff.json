@@ -1,0 +1,160 @@
+{
+  "spec_hash": "19a255e79609ffff",
+  "meta": {
+    "name": "N6_32_MID",
+    "description": "PA6_PRINT i=32 (8x4) средняя. m1=1.25 Z18-54-126, m2=1.5 Z22-22-66. Ø158, Lax95."
+  },
+  "stages": [
+    {
+      "m": 1.25,
+      "b": 25.0,
+      "z_sun": 18,
+      "z_planet": 54,
+      "z_ring": 126,
+      "n_planets": 3,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "PA6_PRINT",
+      "mat_planet": "PA6_PRINT",
+      "mat_ring": "PA6_PRINT",
+      "n_planets_max": 3,
+      "planet_clearance_at_max_mm": 7.942,
+      "n_planets_auto": false
+    },
+    {
+      "m": 1.5,
+      "b": 40.0,
+      "z_sun": 22,
+      "z_planet": 22,
+      "z_ring": 66,
+      "n_planets": 4,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "PA6_PRINT",
+      "mat_planet": "PA6_PRINT",
+      "mat_ring": "PA6_PRINT",
+      "n_planets_max": 4,
+      "planet_clearance_at_max_mm": 10.669,
+      "n_planets_auto": false
+    }
+  ],
+  "load": {
+    "mode": "motor",
+    "n_in": 150.0,
+    "T_in": 3.3
+  },
+  "cfg": {
+    "Ka": 1.3,
+    "T_amb": 25.0,
+    "eta_stage": 0.9,
+    "n_in_ref": 150.0
+  },
+  "raw": {
+    "i": [
+      8.0,
+      4.0
+    ],
+    "i_total": 32.0,
+    "n_stages": 2,
+    "t_out": 85.536,
+    "n_out": 4.6875,
+    "T_in_equiv": 3.3,
+    "geometry": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "stages": [
+      {
+        "stage": 1,
+        "i": 8.0,
+        "n_planets": 3,
+        "sun_torque": 3.3,
+        "sun_speed_rel": 131.25,
+        "sp": {
+          "SF": [
+            3.257478816865512,
+            3.6521705807706883
+          ],
+          "SH": [
+            1.3947976537149955,
+            1.3947976537149955
+          ],
+          "SigmaF": [
+            9.823548148439471,
+            8.761912756344282
+          ],
+          "SigmaH": 17.92374681260279,
+          "SH_pess": 1.3947976537149955,
+          "mats": [
+            "PA6_PRINT",
+            "PA6_PRINT"
+          ]
+        },
+        "pr": {
+          "force_n": 97.77777777777777,
+          "d_planet": 67.5,
+          "d_ring": 157.5,
+          "sigma_p": 13.08125866666667,
+          "sigma_r": 10.341149866666665,
+          "sigma_lim_p": 16,
+          "sigma_lim_r": 16,
+          "sf_p": 2.446247782068677,
+          "sf_r": 3.0944334443065937,
+          "sigma_h": 8.72495392134165,
+          "sigma_h_lim_p": 25,
+          "sigma_h_lim_r": 25,
+          "sh_p": 2.8653446454139795,
+          "sh_r": 2.8653446454139795,
+          "r_eq": 20.200564715172305
+        }
+      },
+      {
+        "stage": 2,
+        "i": 4.0,
+        "n_planets": 4,
+        "sun_torque": 23.759999999999998,
+        "sun_speed_rel": 14.0625,
+        "sp": {
+          "SF": [
+            1.7178258158076685,
+            1.7178258158076685
+          ],
+          "SH": [
+            0.8963216482528907,
+            0.8963216482528907
+          ],
+          "SigmaF": [
+            18.628198333923972,
+            18.628198333923972
+          ],
+          "SigmaH": 27.891773057952996,
+          "SH_pess": 0.8963216482528906,
+          "mats": [
+            "PA6_PRINT",
+            "PA6_PRINT"
+          ]
+        },
+        "pr": {
+          "force_n": 359.99999999999994,
+          "d_planet": 33.0,
+          "d_ring": 99.0,
+          "sigma_p": 30.186,
+          "sigma_r": 20.874554999999994,
+          "sigma_lim_p": 16,
+          "sigma_lim_r": 16,
+          "sf_p": 1.0600940833498973,
+          "sf_r": 1.5329668105499739,
+          "sigma_h": 20.445730455451645,
+          "sigma_h_lim_p": 25,
+          "sigma_h_lim_r": 25,
+          "sh_p": 1.2227491727170845,
+          "sh_r": 1.2227491727170845,
+          "r_eq": 8.464998547310302
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "spec_hash": "f61af0af9a199077",
+  "meta": {
+    "name": "Z_PETG_42",
+    "description": "i=42 (7x6) альтернативная разбивка, PETG. m1=1.5 Z18-45-108 b1=28, m2=2.0 Z20-40-100 b2=65. Ø180/200, Lax133."
+  },
+  "stages": [
+    {
+      "m": 1.5,
+      "b": 28.0,
+      "z_sun": 18,
+      "z_planet": 45,
+      "z_ring": 108,
+      "n_planets": 3,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "PETG",
+      "mat_planet": "PETG",
+      "mat_ring": "PETG",
+      "n_planets_max": 3,
+      "planet_clearance_at_max_mm": 11.339,
+      "n_planets_auto": false
+    },
+    {
+      "m": 2.0,
+      "b": 65.0,
+      "z_sun": 20,
+      "z_planet": 40,
+      "z_ring": 100,
+      "n_planets": 4,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "PETG",
+      "mat_planet": "PETG",
+      "mat_ring": "PETG",
+      "n_planets_max": 3,
+      "planet_clearance_at_max_mm": 19.923,
+      "n_planets_auto": false
+    }
+  ],
+  "load": {
+    "mode": "motor",
+    "n_in": 150.0,
+    "T_in": 3.3
+  },
+  "cfg": {
+    "Ka": 1.3,
+    "T_amb": 25.0,
+    "eta_stage": 0.9,
+    "n_in_ref": 150.0
+  },
+  "raw": {
+    "i": [
+      7.0,
+      6.0
+    ],
+    "i_total": 42.0,
+    "n_stages": 2,
+    "t_out": 112.266,
+    "n_out": 3.5714285714285716,
+    "T_in_equiv": 3.3,
+    "geometry": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "ст.2: СОСЕДСТВО: зазор 0.85 мм мал (<1.5 мм) для 4 саттелитов — туго для FFF-печати"
+      ]
+    },
+    "stages": [
+      {
+        "stage": 1,
+        "i": 7.0,
+        "n_planets": 3,
+        "sun_torque": 3.3,
+        "sun_speed_rel": 128.57142857142858,
+        "sp": {
+          "SF": [
+            3.9155663650065495,
+            4.361185790332754
+          ],
+          "SH": [
+            1.31296226870141,
+            1.31296226870141
+          ],
+          "SigmaF": [
+            6.129381489862669,
+            5.50309047901599
+          ],
+          "SigmaH": 16.756003218401073,
+          "SH_pess": 1.31296226870141,
+          "mats": [
+            "PETG",
+            "PETG"
+          ]
+        },
+        "pr": {
+          "force_n": 81.48148148148148,
+          "d_planet": 67.5,
+          "d_ring": 162.0,
+          "sigma_p": 8.341666666666667,
+          "sigma_r": 6.469804232804233,
+          "sigma_lim_p": 12,
+          "sigma_lim_r": 12,
+          "sf_p": 2.877122877122877,
+          "sf_r": 3.709540371919041,
+          "sigma_h": 8.780319053285051,
+          "sigma_h_lim_p": 22,
+          "sigma_h_lim_r": 22,
+          "sh_p": 2.505603710581447,
+          "sh_r": 2.505603710581447,
+          "r_eq": 19.78830829241369
+        }
+      },
+      {
+        "stage": 2,
+        "i": 6.0,
+        "n_planets": 4,
+        "sun_torque": 20.79,
+        "sun_speed_rel": 17.857142857142854,
+        "sp": {
+          "SF": [
+            3.886920001262253,
+            4.210806915302928
+          ],
+          "SH": [
+            1.3178377268844605,
+            1.3178377268844605
+          ],
+          "SigmaF": [
+            6.174554658239982,
+            5.699620163721856
+          ],
+          "SigmaH": 16.694012890350965,
+          "SH_pess": 1.3178377268844605,
+          "mats": [
+            "PETG",
+            "PETG"
+          ]
+        },
+        "pr": {
+          "force_n": 259.875,
+          "d_planet": 80.0,
+          "d_ring": 200.0,
+          "sigma_p": 8.77078125,
+          "sigma_r": 6.693080625,
+          "sigma_lim_p": 12,
+          "sigma_lim_r": 12,
+          "sf_p": 2.7363582919138474,
+          "sf_r": 3.585792752944762,
+          "sigma_h": 9.587592093939069,
+          "sigma_h_lim_p": 22,
+          "sigma_h_lim_r": 22,
+          "sh_p": 2.2946324566631917,
+          "sh_r": 2.2946324566631917,
+          "r_eq": 22.801342888377917
+        }
+      }
+    ]
+  }
+}

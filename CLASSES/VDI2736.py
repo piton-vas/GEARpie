@@ -37,8 +37,10 @@ class LCC:
         self.RLG = 0.0
         self.A2V = 0.03
         
-        if GMAT.MAT1 != GMAT.MAT2 and\
-            GMAT.MAT1 == ('STEEL' or 'POM' or 'PA66'):
+        polymers = ('POM', 'PA66', 'PA6_CF', 'PA_CF')
+        metals = ('STEEL', 'ADI', 'D16T')
+        if (GMAT.MAT1 in polymers and GMAT.MAT2 in metals) or \
+           (GMAT.MAT2 in polymers and GMAT.MAT1 in metals):
             # PLASTIC/STEEL
             self.kF = 6300
             self.kR = 895
@@ -195,7 +197,7 @@ class LCC:
                     (GFS.ft*(GEO.u+1)/(GEO.b*GEO.d1*GEO.u))**(1/2))
         self.SHmin = 1.4
         self.SigmaHP1 = GMAT.SigmaHlim1(self.TF1,self.NL)/self.SHmin*self.ZR
-        self.SigmaHP2 = GMAT.SigmaHlim1(self.TF2,self.NL)/self.SHmin*self.ZR
+        self.SigmaHP2 = GMAT.SigmaHlim2(self.TF2,self.NL)/self.SHmin*self.ZR
         self.SH1 = self.SigmaHP1*self.SHmin/self.SigmaH
         self.SH2 = self.SigmaHP2*self.SHmin/self.SigmaH
         

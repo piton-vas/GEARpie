@@ -1,0 +1,160 @@
+{
+  "spec_hash": "cc56fa6f9f0ae821",
+  "meta": {
+    "name": "SK_POMC_N35_E",
+    "description": "i=35 (7x5) корр. широкий (макс. запас). m1=1.5/Z18-45-108 b1=30, m2=1.75/Z24-36-96 b2=65. POM_C sun + PA6. Ø180."
+  },
+  "stages": [
+    {
+      "m": 1.5,
+      "b": 30.0,
+      "z_sun": 18,
+      "z_planet": 45,
+      "z_ring": 108,
+      "n_planets": 3,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "POM_C",
+      "mat_planet": "PA6_PRINT",
+      "mat_ring": "PA6_PRINT",
+      "n_planets_max": 3,
+      "planet_clearance_at_max_mm": 11.339,
+      "n_planets_auto": false
+    },
+    {
+      "m": 1.75,
+      "b": 65.0,
+      "z_sun": 24,
+      "z_planet": 36,
+      "z_ring": 96,
+      "n_planets": 4,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "POM_C",
+      "mat_planet": "PA6_PRINT",
+      "mat_ring": "PA6_PRINT",
+      "n_planets_max": 4,
+      "planet_clearance_at_max_mm": 7.746,
+      "n_planets_auto": false
+    }
+  ],
+  "load": {
+    "mode": "motor",
+    "n_in": 150.0,
+    "T_in": 3.3
+  },
+  "cfg": {
+    "Ka": 1.3,
+    "T_amb": 25.0,
+    "eta_stage": 0.9,
+    "n_in_ref": 150.0
+  },
+  "raw": {
+    "i": [
+      7.0,
+      5.0
+    ],
+    "i_total": 35.0,
+    "n_stages": 2,
+    "t_out": 93.555,
+    "n_out": 4.285714285714286,
+    "T_in_equiv": 3.3,
+    "geometry": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "stages": [
+      {
+        "stage": 1,
+        "i": 7.0,
+        "n_planets": 3,
+        "sun_torque": 3.3,
+        "sun_speed_rel": 128.57142857142858,
+        "sp": {
+          "SF": [
+            9.089707633050917,
+            6.230265414761076
+          ],
+          "SH": [
+            2.1781449207147965,
+            1.555817800510569
+          ],
+          "SigmaF": [
+            5.720756057205159,
+            5.136217780414924
+          ],
+          "SigmaH": 16.06871960958141,
+          "SH_pess": 1.555817800510569,
+          "mats": [
+            "POM_C",
+            "PA6_PRINT"
+          ]
+        },
+        "pr": {
+          "force_n": 81.48148148148148,
+          "d_planet": 67.5,
+          "d_ring": 162.0,
+          "sigma_p": 7.785555555555556,
+          "sigma_r": 6.038483950617283,
+          "sigma_lim_p": 16,
+          "sigma_lim_r": 16,
+          "sf_p": 4.110175538746967,
+          "sf_r": 5.299343388455774,
+          "sigma_h": 7.34614197209912,
+          "sigma_h_lim_p": 25,
+          "sigma_h_lim_r": 25,
+          "sh_p": 3.403146861978817,
+          "sh_r": 3.403146861978817,
+          "r_eq": 19.78830829241369
+        }
+      },
+      {
+        "stage": 2,
+        "i": 5.0,
+        "n_planets": 4,
+        "sun_torque": 20.79,
+        "sun_speed_rel": 17.142857142857142,
+        "sp": {
+          "SF": [
+            8.013830043806422,
+            5.147193384011539
+          ],
+          "SH": [
+            2.1092548743123865,
+            1.5066106245088475
+          ],
+          "SigmaF": [
+            6.4887824817533755,
+            6.216980325510976
+          ],
+          "SigmaH": 16.593537569237544,
+          "SH_pess": 1.5066106245088475,
+          "mats": [
+            "POM_C",
+            "PA6_PRINT"
+          ]
+        },
+        "pr": {
+          "force_n": 247.5,
+          "d_planet": 63.0,
+          "d_ring": 168.0,
+          "sigma_p": 9.744428571428573,
+          "sigma_r": 7.306624285714285,
+          "sigma_lim_p": 16,
+          "sigma_lim_r": 16,
+          "sf_p": 3.2839278122296984,
+          "sf_r": 4.37958744677286,
+          "sigma_h": 9.319328766703508,
+          "sigma_h_lim_p": 25,
+          "sigma_h_lim_r": 25,
+          "sh_p": 2.6825966360711573,
+          "sh_r": 2.6825966360711573,
+          "r_eq": 17.2378152236137
+        }
+      }
+    ]
+  }
+}

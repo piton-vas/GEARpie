@@ -1,0 +1,160 @@
+{
+  "spec_hash": "7b8ecd3753d1062b",
+  "meta": {
+    "name": "SK_D16T_N35_BIG",
+    "description": "i=35 (7x5) D16T-солнце + PA6 печать. m1=1.75/Z18-45-108 b1=34, m2=2.0/Z24-36-96 b2=70. Ø204 — крупный модуль обеих ступеней."
+  },
+  "stages": [
+    {
+      "m": 1.75,
+      "b": 34.0,
+      "z_sun": 18,
+      "z_planet": 45,
+      "z_ring": 108,
+      "n_planets": 3,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "D16T",
+      "mat_planet": "PA6_PRINT",
+      "mat_ring": "PA6_PRINT",
+      "n_planets_max": 3,
+      "planet_clearance_at_max_mm": 13.229,
+      "n_planets_auto": false
+    },
+    {
+      "m": 2.0,
+      "b": 70.0,
+      "z_sun": 24,
+      "z_planet": 36,
+      "z_ring": 96,
+      "n_planets": 4,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "D16T",
+      "mat_planet": "PA6_PRINT",
+      "mat_ring": "PA6_PRINT",
+      "n_planets_max": 4,
+      "planet_clearance_at_max_mm": 8.853,
+      "n_planets_auto": false
+    }
+  ],
+  "load": {
+    "mode": "motor",
+    "n_in": 150.0,
+    "T_in": 3.3
+  },
+  "cfg": {
+    "Ka": 1.3,
+    "T_amb": 25.0,
+    "eta_stage": 0.9,
+    "n_in_ref": 150.0
+  },
+  "raw": {
+    "i": [
+      7.0,
+      5.0
+    ],
+    "i_total": 35.0,
+    "n_stages": 2,
+    "t_out": 93.555,
+    "n_out": 4.285714285714286,
+    "T_in_equiv": 3.3,
+    "geometry": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "stages": [
+      {
+        "stage": 1,
+        "i": 7.0,
+        "n_planets": 3,
+        "sun_torque": 3.3,
+        "sun_speed_rel": 128.57142857142858,
+        "sp": {
+          "SF": [
+            70.1085783178835,
+            9.610761278696254
+          ],
+          "SH": [
+            10.766807067229863,
+            1.5833539804749797
+          ],
+          "SigmaF": [
+            3.7085333384043024,
+            3.329600962093708
+          ],
+          "SigmaH": 15.789267787422,
+          "SH_pess": 1.5833539804749799,
+          "mats": [
+            "D16T",
+            "PA6_PRINT"
+          ]
+        },
+        "pr": {
+          "force_n": 69.84126984126983,
+          "d_planet": 78.75,
+          "d_ring": 189.0,
+          "sigma_p": 5.047058823529412,
+          "sigma_r": 3.9145034013605438,
+          "sigma_lim_p": 16,
+          "sigma_lim_r": 16,
+          "sf_p": 6.340326340326341,
+          "sf_r": 8.174727856636407,
+          "sigma_h": 5.914713276885386,
+          "sigma_h_lim_p": 25,
+          "sigma_h_lim_r": 25,
+          "sh_p": 4.22674757501765,
+          "sh_r": 4.22674757501765,
+          "r_eq": 23.086359674482633
+        }
+      },
+      {
+        "stage": 2,
+        "i": 5.0,
+        "n_planets": 4,
+        "sun_torque": 20.79,
+        "sun_speed_rel": 17.142857142857142,
+        "sp": {
+          "SF": [
+            56.361002505891335,
+            7.240008276411835
+          ],
+          "SH": [
+            9.95606878541043,
+            1.4641277625603573
+          ],
+          "SigmaF": [
+            4.613118795621539,
+            4.4198844501679595
+          ],
+          "SigmaH": 17.07501260428384,
+          "SH_pess": 1.4641277625603573,
+          "mats": [
+            "D16T",
+            "PA6_PRINT"
+          ]
+        },
+        "pr": {
+          "force_n": 216.5625,
+          "d_planet": 72.0,
+          "d_ring": 192.0,
+          "sigma_p": 6.9276796875,
+          "sigma_r": 5.194553203124999,
+          "sigma_lim_p": 16,
+          "sigma_lim_r": 16,
+          "sf_p": 4.619151208411005,
+          "sf_r": 6.160298826229958,
+          "sigma_h": 7.857788666067247,
+          "sigma_h_lim_p": 25,
+          "sigma_h_lim_r": 25,
+          "sh_p": 3.181556677384183,
+          "sh_r": 3.181556677384183,
+          "r_eq": 19.70036025555852
+        }
+      }
+    ]
+  }
+}
