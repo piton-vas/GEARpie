@@ -1,0 +1,97 @@
+{
+  "spec_hash": "10c9d4437a7b9af2",
+  "meta": {
+    "name": "outAl-i5-m2-b30",
+    "description": null
+  },
+  "stages": [
+    {
+      "m": 2.0,
+      "b": 30.0,
+      "z_sun": 18,
+      "z_planet": 27,
+      "z_ring": 72,
+      "n_planets": 3,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "D16T",
+      "mat_planet": "D16T",
+      "mat_ring": "D16T",
+      "n_planets_max": 3,
+      "planet_clearance_at_max_mm": 19.942,
+      "n_planets_auto": true
+    }
+  ],
+  "load": {
+    "mode": "output",
+    "T_out_req": 180.0
+  },
+  "cfg": {
+    "Ka": 1.3,
+    "T_amb": 25.0,
+    "eta_stage": 0.9,
+    "n_in_ref": 150.0
+  },
+  "raw": {
+    "i": [
+      5.0
+    ],
+    "i_total": 5.0,
+    "n_stages": 1,
+    "t_out": 180.0,
+    "n_out": 30.0,
+    "T_in_equiv": 36.0,
+    "geometry": {
+      "valid": true,
+      "errors": [],
+      "warnings": []
+    },
+    "stages": [
+      {
+        "stage": 1,
+        "i": 5.0,
+        "n_planets": 3,
+        "sun_torque": 36.0,
+        "sun_speed_rel": 120.0,
+        "sp": {
+          "SF": [
+            7.248671236103458,
+            7.755626713386329
+          ],
+          "SH": [
+            0.6596294963624685,
+            0.6596294963624685
+          ],
+          "SigmaF": [
+            35.86864289071602,
+            33.5240477150913
+          ],
+          "SigmaH": 257.7204338760868,
+          "SH_pess": 0.6596294963624685,
+          "mats": [
+            "D16T",
+            "D16T"
+          ]
+        },
+        "pr": {
+          "force_n": 666.6666666666666,
+          "d_planet": 54.0,
+          "d_ring": 144.0,
+          "sigma_p": 52.866666666666674,
+          "sigma_r": 38.269833333333324,
+          "sigma_lim_p": 130,
+          "sigma_lim_r": 130,
+          "sf_p": 4.918032786885245,
+          "sf_r": 6.79386287720093,
+          "sigma_h": 163.5753610324053,
+          "sigma_h_lim_p": 170,
+          "sigma_h_lim_r": 170,
+          "sh_p": 1.039276324545736,
+          "sh_r": 1.039276324545736,
+          "r_eq": 14.775270191668891
+        }
+      }
+    ]
+  }
+}
