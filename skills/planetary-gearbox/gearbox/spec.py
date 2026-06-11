@@ -91,7 +91,7 @@ def normalize(spec):
         Ka=float(load.pop('_Ka')),
         T_amb=float(lim.get('T_amb', 25.0)),
         eta_stage=float(load.pop('_eta_stage')),
-        ring_wall=float(lim.get('ring_wall', 6.0)),
+        ring_wall=float(lim.get('ring_wall', 4.0)),
         SF_min=float(lim.get('SF_min', 2.0)),
         SH_min=float(lim.get('SH_min', 1.4)),
         D_max=(None if lim.get('D_max') in (None, '') else float(lim['D_max'])),
@@ -99,6 +99,7 @@ def normalize(spec):
         planet_clearance_min=float(lim.get('planet_clearance_min',
                                            engine.NEIGHBOR_CLEAR_WARN)),
         n_planets_cap=int(lim.get('n_planets_cap', 12)),
+        alpha_deg=float(lim.get('alpha', 20.0)),
     )
     meta = {'name': spec.get('name'), 'description': spec.get('description')}
     return stages, load, cfg, meta
@@ -170,6 +171,10 @@ def physics_hash(stages, load, cfg):
             'T_amb': r(cfg.T_amb),
         },
     }
+    # α включаем в хэш только при нестандартном значении — иначе кэш α=20° остаётся
+    # совместим с ранее посчитанными коробками (где поля alpha не было).
+    if abs(cfg.alpha_deg - 20.0) > 1e-9:
+        canon['load']['alpha_deg'] = r(cfg.alpha_deg)
     blob = json.dumps(canon, sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(blob.encode('utf-8')).hexdigest()[:16]
 
@@ -217,7 +222,7 @@ def build_report(stages, load, cfg, raw, spec_hash, meta, from_cache=False):
         'load': {
             'mode': load['mode'],
             'Ka': cfg.Ka, 'eta_stage': cfg.eta_stage, 'T_amb': cfg.T_amb,
-            'n_in': load.get('n_in', cfg.n_in_ref),
+            'n_in': load.get('n_in', cfg.n_in_ref), 'alpha_deg': cfg.alpha_deg,
         },
         'ratio': {'per_stage': [round(x, 4) for x in raw['i']],
                   'total': round(raw['i_total'], 4)},
@@ -347,6 +352,6 @@ def raw_to_cache(stages, load, cfg, raw, spec_hash, meta):
         'stages': stages,
         'load': {k: v for k, v in load.items() if not k.startswith('_')},
         'cfg': {'Ka': cfg.Ka, 'T_amb': cfg.T_amb, 'eta_stage': cfg.eta_stage,
-                'n_in_ref': cfg.n_in_ref},
+                'n_in_ref': cfg.n_in_ref, 'alpha_deg': cfg.alpha_deg},
         'raw': raw,
     }

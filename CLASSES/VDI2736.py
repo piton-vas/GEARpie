@@ -162,10 +162,12 @@ class LCC:
         # minimum safety factor root stress
         self.SFmin = 2
         # tooth root stress
+        # KF (=KA) — коэффициент нагрузки: ISO 6336/VDI 2736 требует учесть его в
+        # напряжении (изгиб линеен по силе → ×KF). Ранее KF заводился, но не применялся.
         self.SigmaF1 = (GFS.ft/(GEO.b*GEO.m)*self.YFa1*self.YSa1*self.Yeps*
-                        self.Ybeta)
+                        self.Ybeta*self.KF)
         self.SigmaF2 = (GFS.ft/(GEO.b*GEO.m)*self.YFa2*self.YSa2*self.Yeps*
-                        self.Ybeta)
+                        self.Ybeta*self.KF)
         self.SigmaFG1 = GMAT.SigmaFlim1(self.TR1,self.NL)*self.YSt
         self.SigmaFG2 = GMAT.SigmaFlim2(self.TR2,self.NL)*self.YSt
         self.SigmaFP1 = self.SigmaFG1/self.SFmin
@@ -192,9 +194,10 @@ class LCC:
         self.ZBETA = (np.cos(GEO.beta))**(1/2)
         # surface roughness factor
         self.ZR = 1
-        # flank stress
+        # flank stress. KH (=KA) — коэффициент нагрузки: контакт ∝ √силы → ×√KH
+        # (ISO 6336/VDI 2736). Ранее KH заводился, но не применялся.
         self.SigmaH = (self.ZE*self.ZH*self.ZEPS*self.ZBETA*
-                    (GFS.ft*(GEO.u+1)/(GEO.b*GEO.d1*GEO.u))**(1/2))
+                    (GFS.ft*(GEO.u+1)/(GEO.b*GEO.d1*GEO.u))**(1/2)*self.KH**(1/2))
         self.SHmin = 1.4
         self.SigmaHP1 = GMAT.SigmaHlim1(self.TF1,self.NL)/self.SHmin*self.ZR
         self.SigmaHP2 = GMAT.SigmaHlim2(self.TF2,self.NL)/self.SHmin*self.ZR

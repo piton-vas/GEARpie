@@ -191,6 +191,30 @@ class LIBRARY_MAT:
         self.SigmaHlim = lambda temp, cycles: 35
         self.SigmaFlim = lambda temp, cycles: 26
 
+    def PA6_CAST(self):
+        # Капролон — блочный (анионно-полимеризованный в форме) полиамид-6,
+        # фрезеровка/токарка из прутка или плиты.
+        # ГОСТ/ТУ 6-05-988: σt ~ 70–90 МПа (сухой). Кристалличность и
+        # молекулярная масса выше литьевого ПА6, поэтому усталостные свойства
+        # принимаются на уровне PA66 — S-N кривые VDI 2736-2 от PA66 без дераты.
+        # E = 2000 МПа — кондиционированный (~2.5 % влаги, эксплуатация в
+        # помещении); сухой после фрезеровки 2800–3200 — влага учтена именно
+        # через пониженный E. Материал гигроскопичен: заготовкам вылежаться
+        # после черновой, боковой зазор закладывать с запасом на разбухание.
+        self.E = 2000
+        self.v = 0.35
+        self.cp = 1700
+        self.k = 0.28
+        self.rho = 1150
+        def SHlimPA6CAST(temp, cycles):
+            if temp > 120: temp = 120
+            return 36 - 0.0012*temp**2 + (1000 - 0.025*temp**2)*cycles**(-0.21)
+        self.SigmaHlim = SHlimPA6CAST
+        def SFlimPA6CAST(temp, cycles):
+            if temp > 120: temp = 120
+            return 30 - 0.22*temp + (4600 - 900*temp**(0.3))*cycles**(-1/3)
+        self.SigmaFlim = SFlimPA6CAST
+
 class MATERIAL:
     """Assign a material to pinion and wheel"""
 

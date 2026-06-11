@@ -62,23 +62,27 @@ class Config:
     Ka: float = 1.3              # коэффициент нагрузки (умножает момент ДО напряжений)
     T_amb: float = 25.0          # окружающая температура, °C
     eta_stage: float = 0.9       # КПД одной ступени (для режима motor и оценки)
-    ring_wall: float = 6.0       # толщина стенки венца (для наружного Ø), мм
+    ring_wall: float = 4.0       # радиальный припуск делит.Ø→наруж.Ø, мм (OD=m·z_ring+2·ring_wall).
+                                 # backing за корнем зуба = ring_wall−1.25·m (m≤2.0 → ≥1.5 мм)
     SF_min: float = 2.0          # порог приёмки по изгибу (VDI 2736)
     SH_min: float = 1.4          # порог приёмки по контакту (VDI 2736)
     D_max: float = None          # лимит наружного Ø, мм (None = без лимита)
     n_in_ref: float = 150.0      # опорная входная скорость для кинематики VDI, об/мин
     planet_clearance_min: float = NEIGHBOR_CLEAR_WARN  # мин. зазор саттелитов для авто-подбора n, мм
     n_planets_cap: int = 12      # потолок при авто-подборе числа саттелитов
+    alpha_deg: float = 20.0      # угол профиля/зацепления, град (стандарт 20; 25 — выше нагруз. способность,
+                                 # σH ∝ 1/√(sin2α), но распорная сила ∝ tanα). При x=0 геометрия (соосность/
+                                 # сборка/зазор) от α не зависит — α входит только в напряжения.
 
 
 # ============================================================================
 #  Вспомогательные функции (порт из spider_thigh.py, идентичны)
 # ============================================================================
 def _gtype(name, m, z_pinion, z_wheel, b, x_pinion=0.0, x_wheel=0.0,
-           dshaft_p=8.0, dshaft_w=8.0):
+           dshaft_p=8.0, dshaft_w=8.0, alpha_deg=20.0):
     return SimpleNamespace(
         GEAR_NAME=name,
-        alpha=20.0, beta=0.0,
+        alpha=alpha_deg, beta=0.0,
         m=m,
         z=[z_pinion, z_wheel],
         x=[x_pinion, x_wheel],
@@ -210,7 +214,7 @@ def _run_pair_at(size, name, m, z_pinion, z_wheel, b,
                  torque_pinion_nm, speed_pinion_rpm,
                  mat_pinion, mat_wheel, x_pinion, x_wheel, cfg):
     gtype = _gtype(name, m, z_pinion, z_wheel, b,
-                   x_pinion=x_pinion, x_wheel=x_wheel)
+                   x_pinion=x_pinion, x_wheel=x_wheel, alpha_deg=cfg.alpha_deg)
     gmat = MATERIAL_LIBRARY.MATERIAL(mat_pinion, mat_wheel)
     geo = CALC_GEOMETRY.MAAG(gtype)
     pprof = INVOLUTE_GEOMETRY.LITVIN('P', geo, size)
@@ -507,7 +511,7 @@ def compute(stages, load, cfg):
             m=m, z_planet=s['z_planet'], z_ring=s['z_ring'], b=s['b'],
             force_t_n=f_t, mat_planet=s['mat_planet'], mat_ring=s['mat_ring'],
             x_planet=s['x_planet'], x_ring=s.get('x_ring', 0.0),
-            ka=cfg.Ka, t_amb=cfg.T_amb)
+            ka=cfg.Ka, t_amb=cfg.T_amb, alpha_deg=cfg.alpha_deg)
 
         result['stages'].append({
             'stage': k + 1, 'i': kin['i'][k], 'n_planets': n_sat,

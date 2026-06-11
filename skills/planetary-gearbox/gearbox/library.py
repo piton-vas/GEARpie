@@ -48,7 +48,7 @@ def _briefs_from_stages(stages):
 
 
 def _dims(briefs):
-    d = max(b['m'] * b['z_ring'] + 12.0 for b in briefs)   # стенка 6 мм
+    d = max(b['m'] * b['z_ring'] + 8.0 for b in briefs)   # стенка 4 мм (2·ring_wall)
     l = sum(b['b'] for b in briefs) + 15 * len(briefs)
     return round(d, 2), round(l, 1)
 
