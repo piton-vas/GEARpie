@@ -87,6 +87,11 @@ def normalize(spec):
     load = _normalize_load(spec.get('load', {}))
 
     lim = spec.get('limits', {}) or {}
+    lube = str(lim.get('lubrication', 'grease')).lower()
+    if lube not in engine.LUBRICATIONS:
+        raise SpecError(
+            f"неизвестная смазка {lube!r}; допустимо: "
+            f"{', '.join(engine.LUBRICATIONS)}")
     cfg = engine.Config(
         Ka=float(load.pop('_Ka')),
         T_amb=float(lim.get('T_amb', 25.0)),
@@ -100,9 +105,29 @@ def normalize(spec):
                                            engine.NEIGHBOR_CLEAR_WARN)),
         n_planets_cap=int(lim.get('n_planets_cap', 12)),
         alpha_deg=float(lim.get('alpha', 20.0)),
+        lubrication=lube,
+        cycles=_parse_cycles(lim),
     )
     meta = {'name': spec.get('name'), 'description': spec.get('description')}
     return stages, load, cfg, meta
+
+
+def _parse_cycles(lim):
+    """Расчётный ресурс limits.cycles (циклов нагружения) → cfg.cycles.
+
+    Единая S-N точка для обеих пар. По умолчанию engine.DESIGN_CYCLES_DEFAULT
+    (1e8). Должен быть > 0.
+    """
+    val = lim.get('cycles', lim.get('NL'))
+    if val in (None, ''):
+        return engine.DESIGN_CYCLES_DEFAULT
+    try:
+        c = float(val)
+    except (TypeError, ValueError):
+        raise SpecError(f"'cycles' должен быть числом, получено {val!r}")
+    if c <= 0:
+        raise SpecError(f"'cycles' должен быть > 0, получено {val!r}")
+    return c
 
 
 def _normalize_load(load):
@@ -175,6 +200,17 @@ def physics_hash(stages, load, cfg):
     # совместим с ранее посчитанными коробками (где поля alpha не было).
     if abs(cfg.alpha_deg - 20.0) > 1e-9:
         canon['load']['alpha_deg'] = r(cfg.alpha_deg)
+    # Расчётный ресурс включаем в хэш только при нестандартном значении — иначе
+    # ключи кэша при дефолте (1e8) остаются совместимы с ранее посчитанными
+    # коробками (где поля cycles не было).
+    if abs(getattr(cfg, 'cycles', engine.DESIGN_CYCLES_DEFAULT)
+           - engine.DESIGN_CYCLES_DEFAULT) > 1e-3:
+        canon['load']['cycles'] = r(cfg.cycles)
+    # Смазку включаем в хэш только при != 'dry': старый кэш считался всухую и поля
+    # lubrication не имел — его хэши остаются стабильными, а смазанные расчёты
+    # получают отдельные ключи (другая физика → другой результат).
+    if getattr(cfg, 'lubrication', 'dry') != 'dry':
+        canon['load']['lubrication'] = cfg.lubrication
     blob = json.dumps(canon, sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(blob.encode('utf-8')).hexdigest()[:16]
 
@@ -210,10 +246,21 @@ def _min_at(entries):
             'at': {'stage': stage, 'mesh': mesh, 'member': member}}
 
 
+def _round_deep(x, nd=3):
+    """Рекурсивное округление float'ов во вложенных dict/list (для отчёта)."""
+    if isinstance(x, dict):
+        return {k: _round_deep(v, nd) for k, v in x.items()}
+    if isinstance(x, (list, tuple)):
+        return [_round_deep(v, nd) for v in x]
+    if isinstance(x, float):
+        return round(x, nd)
+    return x
+
+
 def build_report(stages, load, cfg, raw, spec_hash, meta, from_cache=False):
     n = raw['n_stages']
     d_outer = engine.outer_diameter(stages, cfg)
-    l_axial = engine.axial_length(stages)
+    l_axial = engine.axial_length(stages, cfg)
 
     report = {
         'spec_hash': spec_hash,
@@ -223,6 +270,7 @@ def build_report(stages, load, cfg, raw, spec_hash, meta, from_cache=False):
             'mode': load['mode'],
             'Ka': cfg.Ka, 'eta_stage': cfg.eta_stage, 'T_amb': cfg.T_amb,
             'n_in': load.get('n_in', cfg.n_in_ref), 'alpha_deg': cfg.alpha_deg,
+            'lubrication': cfg.lubrication, 'cycles': cfg.cycles,
         },
         'ratio': {'per_stage': [round(x, 4) for x in raw['i']],
                   'total': round(raw['i_total'], 4)},
@@ -270,6 +318,7 @@ def build_report(stages, load, cfg, raw, spec_hash, meta, from_cache=False):
     if not raw['geometry']['valid']:
         report['safety'] = None
         report['pass'] = False
+        report['model_warnings'] = list(raw.get('model_warnings', []))
         report['note'] = ('Геометрически невалидно — расчёт прочности пропущен. '
                           'См. geometry.errors.')
         return report
@@ -293,12 +342,17 @@ def build_report(stages, load, cfg, raw, spec_hash, meta, from_cache=False):
             'materials': {'sun': sg['mat_sun'], 'planet': sg['mat_planet'],
                           'ring': sg['mat_ring']},
             'sun_torque_Nm': round(st['sun_torque'], 4),
+            # b/m и прогиб зуба (VDI 2736-2; .get — совместимость со старым кэшем)
+            'b_over_m': round(sg['b'] / sg['m'], 2),
+            'deflection': _round_deep(st.get('deflection'), 4),
             'sun_planet': {
                 'SigmaF_MPa': [round(x, 3) for x in sp['SigmaF']],
                 'SF': [round(x, 3) for x in sp['SF']],
                 'SigmaH_MPa': round(sp['SigmaH'], 3),
                 'SH': [round(x, 3) for x in sp['SH']],
                 'SH_pess': round(sp['SH_pess'], 3),
+                'tooth_temp_C': _round_deep(sp.get('temps'), 1),
+                'wear': _round_deep(sp.get('wear'), 6),
             },
             'planet_ring': {
                 'F_t_N': round(pr['force_n'], 2), 'R_eq_mm': round(pr['r_eq'], 3),
@@ -307,6 +361,9 @@ def build_report(stages, load, cfg, raw, spec_hash, meta, from_cache=False):
                 'SF': {'planet': round(pr['sf_p'], 3), 'ring': round(pr['sf_r'], 3)},
                 'SigmaH_MPa': round(pr['sigma_h'], 3),
                 'SH': {'planet': round(pr['sh_p'], 3), 'ring': round(pr['sh_r'], 3)},
+                'tooth_temp_C': _round_deep(
+                    {'flank': pr.get('temp_flank'), 'root': pr.get('temp_root')}
+                    if pr.get('temp_flank') else None, 1),
             },
         })
 
@@ -318,6 +375,11 @@ def build_report(stages, load, cfg, raw, spec_hash, meta, from_cache=False):
     passed = (sf_min['value'] >= cfg.SF_min and sh_min['value'] >= cfg.SH_min)
 
     warnings = list(raw['geometry'].get('warnings', []))
+    if 'model_warnings' in raw:
+        warnings += list(raw['model_warnings'])
+    else:
+        # старый кэш (raw без model_warnings): b/m восстановимо из геометрии
+        warnings += engine.bm_warnings(stages)
     if shp_min['value'] < cfg.SH_min <= sh_min['value']:
         warnings.append(
             f"SH_pess={shp_min['value']} < {cfg.SH_min}: для смешанной пары "
@@ -352,6 +414,7 @@ def raw_to_cache(stages, load, cfg, raw, spec_hash, meta):
         'stages': stages,
         'load': {k: v for k, v in load.items() if not k.startswith('_')},
         'cfg': {'Ka': cfg.Ka, 'T_amb': cfg.T_amb, 'eta_stage': cfg.eta_stage,
-                'n_in_ref': cfg.n_in_ref, 'alpha_deg': cfg.alpha_deg},
+                'n_in_ref': cfg.n_in_ref, 'alpha_deg': cfg.alpha_deg,
+                'lubrication': cfg.lubrication, 'cycles': cfg.cycles},
         'raw': raw,
     }

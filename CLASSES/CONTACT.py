@@ -25,7 +25,7 @@ class HERTZ:
     """Calculation of contact stresses, power loss and \
     film thickness along path of contact"""
 
-    def __init__(self, GMAT, GLUB, GEO, GPATH, GFS, POSAE):
+    def __init__(self, GMAT, GLUB, GEO, GPATH, GFS, POSAE, cof_override=None):
         import numpy as np
         # tile speeds
         self.vg3D = np.tile(GFS.vg, (len(GPATH.bpos), 1)).T
@@ -73,9 +73,16 @@ class HERTZ:
             self.Lambda0C = self.h0C/GEO.Rrms
             self.LambdamC = self.hmC/GEO.Rrms
         # POWER LOSS ==========================================================
-        if GLUB == None:
+        if GLUB == None and cof_override is not None:
+            # μ задан извне (напр. с учётом смазки в planetary-gearbox): минуем
+            # сухую таблицу, чтобы LCC посчитал нагрев θ при выбранном трении.
+            self.CoF = cof_override
+        elif GLUB == None:
             # according to VDI 2736
-            polymers = ('POM', 'PA66', 'PA6_CF', 'PA_CF')
+            # Полный список пластиков библиотеки (как в VDI2736.LCC): пропуск
+            # ронял гибрид пластик+металл в fallback CoF=0.30 вместо 0.20.
+            polymers = ('POM', 'POM_C', 'PA66', 'PA6_CAST', 'PA6_CF', 'PA_CF',
+                        'PA6_PRINT', 'PA6_ANNEAL', 'PETG')
             metals = ('STEEL', 'ADI', 'D16T')
             if GMAT.MAT1 == GMAT.MAT2 == 'POM':
                 self.CoF = 0.28

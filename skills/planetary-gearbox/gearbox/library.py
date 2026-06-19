@@ -7,7 +7,7 @@ legacy-источники (``REPORT/SPIDER_KNEE/_data``, ``spider_thigh_results.
 больше не читаются.
 
 Все записи приводятся к единому компактному виду для фильтрации; габариты
-пересчитываются одной формулой (стенка венца 6 мм, L = Σb + 15·n).
+пересчитываются одной формулой (стенка венца 6 мм, L = Σb + 30·n).
 """
 
 import glob as _glob
@@ -49,7 +49,7 @@ def _briefs_from_stages(stages):
 
 def _dims(briefs):
     d = max(b['m'] * b['z_ring'] + 8.0 for b in briefs)   # стенка 4 мм (2·ring_wall)
-    l = sum(b['b'] for b in briefs) + 15 * len(briefs)
+    l = sum(b['b'] for b in briefs) + 30 * len(briefs)   # припуск engine.Config.stage_axial_gap
     return round(d, 2), round(l, 1)
 
 

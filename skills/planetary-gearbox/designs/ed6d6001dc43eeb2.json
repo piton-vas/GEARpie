@@ -1,0 +1,98 @@
+{
+  "spec_hash": "ed6d6001dc43eeb2",
+  "meta": {
+    "name": "thigh-mr-MR2_castout",
+    "description": null
+  },
+  "stages": [
+    {
+      "m": 1.0,
+      "b": 26.0,
+      "z_sun": 18,
+      "z_planet": 45,
+      "z_ring": 108,
+      "n_planets": 3,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "PA6_ANNEAL",
+      "mat_planet": "PA6_ANNEAL",
+      "mat_ring": "PA6_ANNEAL",
+      "n_planets_max": 3,
+      "planet_clearance_at_max_mm": 7.56,
+      "n_planets_auto": false
+    },
+    {
+      "m": 1.75,
+      "b": 30.0,
+      "z_sun": 24,
+      "z_planet": 21,
+      "z_ring": 66,
+      "n_planets": 4,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "PA6_CAST",
+      "mat_planet": "PA6_CAST",
+      "mat_ring": "PA6_CAST",
+      "n_planets_max": 5,
+      "planet_clearance_at_max_mm": 6.038,
+      "n_planets_auto": false
+    },
+    {
+      "m": 1.5,
+      "b": 40.0,
+      "z_sun": 24,
+      "z_planet": 18,
+      "z_ring": 60,
+      "n_planets": 4,
+      "x_sun": 0.0,
+      "x_planet": 0.0,
+      "x_ring": 0.0,
+      "mat_sun": "PA6_CAST",
+      "mat_planet": "PA6_CAST",
+      "mat_ring": "PA6_CAST",
+      "n_planets_max": 4,
+      "planet_clearance_at_max_mm": 14.548,
+      "n_planets_auto": false
+    }
+  ],
+  "load": {
+    "mode": "output",
+    "T_out_req": 180.0
+  },
+  "cfg": {
+    "Ka": 1.3,
+    "T_amb": 25.0,
+    "eta_stage": 0.9,
+    "n_in_ref": 150.0,
+    "alpha_deg": 20.0,
+    "lubrication": "grease",
+    "cycles": 10000000.0
+  },
+  "raw": {
+    "i": [
+      7.0,
+      3.75,
+      3.5
+    ],
+    "i_total": 91.875,
+    "n_stages": 3,
+    "t_out": 180.0,
+    "n_out": 1.6326530612244898,
+    "T_in_equiv": 1.9591836734693877,
+    "geometry": {
+      "valid": false,
+      "errors": [
+        "ст.2: СБОРКА: (z_s+z_r)=90 не кратно n_sat=4 (=22.500) — равномерная расстановка невозможна"
+      ],
+      "warnings": []
+    },
+    "model_warnings": [
+      "ст.1: b/m = 26.0 > 12 — упрощение K=KA·KV·KHβ·KHα≈1…1.25 (VDI 2736) вне области применимости: широкое колесо работает не всей шириной (перекос/прогиб валов) — реальные SF/SH ниже расчётных; предпочесть крупнее модуль вместо ширины либо поднять Ka",
+      "ст.2: b/m = 17.1 > 12 — упрощение K=KA·KV·KHβ·KHα≈1…1.25 (VDI 2736) вне области применимости: широкое колесо работает не всей шириной (перекос/прогиб валов) — реальные SF/SH ниже расчётных; предпочесть крупнее модуль вместо ширины либо поднять Ka",
+      "ст.3: b/m = 26.7 > 12 — упрощение K=KA·KV·KHβ·KHα≈1…1.25 (VDI 2736) вне области применимости: широкое колесо работает не всей шириной (перекос/прогиб валов) — реальные SF/SH ниже расчётных; предпочесть крупнее модуль вместо ширины либо поднять Ka"
+    ],
+    "stages": []
+  }
+}

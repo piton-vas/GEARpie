@@ -24,9 +24,14 @@ SOFTWARE. '''
 class LCC:
     
     
-    def __init__(self, GMAT, GEO, GFS, GPATH, GCONTACT, T0, KA):
+    def __init__(self, GMAT, GEO, GFS, GPATH, GCONTACT, T0, KA, NL=1e8):
 
         import numpy as np
+        # NL — число циклов нагружения для чтения S-N кривой материала (σF/σH).
+        # Вынесено в параметр (раньше — жёсткая 1e8 ниже), чтобы вызывающий код
+        # задавал единый расчётный ресурс для всех зацеплений коробки. Дефолт
+        # 1e8 сохраняет прежнее поведение GEARpie и всех существующих вызовов.
+        self._NL_stress = NL
         # TEMPERATURE =========================================================
         self.TO = T0
         self.KA = KA
@@ -37,7 +42,10 @@ class LCC:
         self.RLG = 0.0
         self.A2V = 0.03
         
-        polymers = ('POM', 'PA66', 'PA6_CF', 'PA_CF')
+        # ВСЕ пластики библиотеки: пропуск здесь роняет гибрид пластик+металл
+        # в ветку «пластик/пластик» (kF=9000 вместо 6300 — зуб «горячее»).
+        polymers = ('POM', 'POM_C', 'PA66', 'PA6_CAST', 'PA6_CF', 'PA_CF',
+                    'PA6_PRINT', 'PA6_ANNEAL', 'PETG')
         metals = ('STEEL', 'ADI', 'D16T')
         if (GMAT.MAT1 in polymers and GMAT.MAT2 in metals) or \
            (GMAT.MAT2 in polymers and GMAT.MAT1 in metals):
@@ -70,7 +78,8 @@ class LCC:
         # EXCESS LOAD VERIFICATION ============================================
         
         # ROOT STRESS =========================================================
-        self.NL = 1e8
+        # NL для напряжений (S-N): задаётся вызывающим (по умолчанию 1e8).
+        self.NL = self._NL_stress
         # influence factor
         self.KF = self.KA
         # form factor

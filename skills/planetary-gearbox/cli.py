@@ -50,13 +50,65 @@ def _read_spec(args):
 # ============================================================================
 #  Человекочитаемые принтеры
 # ============================================================================
+def _calc_extras(r):
+    """Сводные строки по нагреву/прогибу/износу (поля могут отсутствовать
+    в отчётах из старого кэша — тогда строки просто не печатаются)."""
+    lines = []
+    t_best, lam_best, wear_best = None, None, None
+    for st in r.get('stages', []):
+        sp = st.get('sun_planet') or {}
+        pr = st.get('planet_ring') or {}
+        spt = sp.get('tooth_temp_C')
+        if spt:
+            for zone in ('flank', 'root'):
+                for i, memb in enumerate(('sun', 'planet')):
+                    v = spt[zone][i]
+                    if t_best is None or v > t_best[0]:
+                        t_best = (v, f"ст.{st['stage']} sun-planet/{memb}")
+        prt = pr.get('tooth_temp_C')
+        if prt:
+            for zone in ('flank', 'root'):
+                for memb, v in (prt.get(zone) or {}).items():
+                    if t_best is None or v > t_best[0]:
+                        t_best = (v, f"ст.{st['stage']} planet-ring/{memb}")
+        d = st.get('deflection')
+        if d:
+            lam = max(d['lambda_sun_planet_mm'], d['lambda_planet_ring_mm'])
+            if lam_best is None or lam / d['limit_mm'] > lam_best[0]:
+                lam_best = (lam / d['limit_mm'], lam, d['limit_mm'], st['stage'])
+        w = sp.get('wear')
+        if w:
+            for n in (w.get('N_to_limit') or []):
+                if n and (wear_best is None or n < wear_best[0]):
+                    wear_best = (n, st['stage'], w.get('kw_mm3_per_Nm'))
+    if t_best:
+        lines.append(f"θ_зуба max = {t_best[0]:.0f} °C ({t_best[1]})")
+    if lam_best:
+        ok = 'OK' if lam_best[0] <= 1.0 else 'ПРЕВЫШЕН'
+        lines.append(f"Прогиб зуба max: λ = {lam_best[1]:.3f} мм / предел "
+                     f"{lam_best[2]:.3f} мм (ст.{lam_best[3]}) — {ok}")
+    if wear_best:
+        lube = (r.get('load') or {}).get('lubrication', 'dry')
+        lube_ru = {'dry': 'сухой ход', 'grease': 'консистентная смазка',
+                   'oil': 'масло'}.get(lube, lube)
+        kw = wear_best[2]
+        kw_s = f"kw≈{kw:.1e} мм³/(Н·м)" if kw else "kw — оценка"
+        lines.append(f"Износ (внешние пары, средний Wm по VDI 2736): ресурс до "
+                     f"0.2·m ≈ {wear_best[0]:.1e} циклов (ст.{wear_best[1]}; "
+                     f"оценка, {kw_s}, {lube_ru})")
+    return lines
+
+
 def _pretty_calc(r):
     L = []
     head = r.get('name') or r['spec_hash']
     L.append(f"=== {head} ===  (hash {r['spec_hash']}{' · из кэша' if r['from_cache'] else ''})")
     rt = r['ratio']
+    lube_ru = {'dry': 'сухой', 'grease': 'смазка', 'oil': 'масло'}.get(
+        (r.get('load') or {}).get('lubrication', 'dry'), '?')
     L.append(f"i = {' × '.join(map(str, rt['per_stage']))} = {rt['total']}   "
-             f"({r['kinematics'].get('eta_est')} КПД, {r['load']['mode']}-режим)")
+             f"({r['kinematics'].get('eta_est')} КПД, {r['load']['mode']}-режим, "
+             f"{lube_ru})")
     k = r['kinematics']
     L.append(f"T_out = {k['T_out_Nm']} Н·м,  n_out = {k['n_out_rpm']} об/мин,  "
              f"T_in(экв) = {k['T_in_equiv_Nm']} Н·м")
@@ -91,6 +143,7 @@ def _pretty_calc(r):
     g = s['governing']
     L.append(f"Слабое место: {g['metric']} = {g['value']} в ст.{g['stage']} "
              f"{g['mesh']}/{g['member']}  (запас к порогу ×{g['margin_ratio']})")
+    L.extend(_calc_extras(r))
     for w in s.get('warnings', []):
         if w not in geo.get('warnings', []):
             L.append(f"  ⚠ {w}")
