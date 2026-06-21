@@ -50,6 +50,11 @@ REPORT/SPIDER*.txt
 REPORT/**/_run.log
 
 # Кэш расчётов скила planetary-gearbox теперь ОТСЛЕЖИВАЕТСЯ (готовые дизайны в git).
+# Отчёт сверки кэша — генерируемый артефакт verify_cache.py, не коммитим.
+skills/planetary-gearbox/verify_cache_report.json
+# Отладочные скрипты кампаний (префикс _) и их данные — локальные.
+skills/planetary-gearbox/_*.py
+skills/planetary-gearbox/_*.json
 
 # Локальные кэши standalone-инструментов spider_*.py (регенерируются прогоном;
 # единый источник готовых коробок — кэш скила skills/planetary-gearbox/designs/)
